@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VISIONAI — AI Image Generator</title>
+<meta name="description" content="A free AI image generator built by Tioluwalope Adesuyan. Style presets, magic prompt enhancement, gallery, downloads.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='80' font-size='80'>👁️</text></svg>">
+<script src="https://js.puter.com/v2/"></script>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --bg:#0a0a14; --panel:#14142a; --panel2:#1c1c3a; --accent:#8b5cf6; --accent2:#06b6d4;
+    --text:#e8e8f4; --muted:#8888aa; --border:rgba(139,92,246,.25);
+  }
+  body { background:var(--bg); color:var(--text); font-family:'Segoe UI',system-ui,sans-serif; min-height:100vh; }
+  .stars { position:fixed; inset:0; pointer-events:none; z-index:0;
+    background:radial-gradient(ellipse at 20% 0%, rgba(139,92,246,.15), transparent 50%),
+               radial-gradient(ellipse at 80% 100%, rgba(6,182,212,.1), transparent 50%); }
+  header { position:relative; z-index:1; text-align:center; padding:40px 16px 24px; }
+  h1 { font-size:42px; font-weight:800; letter-spacing:2px;
+    background:linear-gradient(90deg,#8b5cf6,#06b6d4,#8b5cf6); -webkit-background-clip:text; background-clip:text; color:transparent;
+    animation:shimmer 6s linear infinite; background-size:200% auto; }
+  @keyframes shimmer { to { background-position:200% center; } }
+  .tagline { color:var(--muted); font-size:14px; margin-top:8px; }
+  .badge { display:inline-block; margin-top:14px; padding:5px 14px; border:1px solid var(--border); border-radius:20px;
+    font-size:11px; color:var(--accent); letter-spacing:1px; }
+  main { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:0 16px 60px; }
+  .studio { background:var(--panel); border:1px solid var(--border); border-radius:20px; padding:24px; margin-bottom:28px;
+    box-shadow:0 20px 60px rgba(0,0,0,.5); }
+  .prompt-row { display:flex; gap:12px; flex-wrap:wrap; }
+  textarea { flex:1; min-width:220px; background:var(--panel2); border:1px solid var(--border); border-radius:12px;
+    color:var(--text); padding:14px; font-size:15px; resize:vertical; min-height:80px; font-family:inherit; }
+  textarea:focus { outline:none; border-color:var(--accent); }
+  .actions { display:flex; gap:10px; flex-direction:column; justify-content:center; }
+  button { cursor:pointer; border:none; border-radius:12px; font-size:15px; font-weight:600; padding:14px 22px;
+    transition:all .2s; font-family:inherit; }
+  .btn-main { background:linear-gradient(135deg,#8b5cf6,#6d28d9); color:#fff; }
+  .btn-main:hover { transform:translateY(-2px); box-shadow:0 8px 25px rgba(139,92,246,.4); }
+  .btn-main:disabled { opacity:.5; cursor:wait; transform:none; box-shadow:none; }
+  .btn-ghost { background:transparent; color:var(--accent); border:1px solid var(--border); font-size:13px; padding:12px 16px; }
+  .btn-ghost:hover { background:var(--panel2); }
+  .controls { margin-top:18px; }
+  .controls label { display:block; font-size:12px; color:var(--muted); margin-bottom:8px; letter-spacing:1px; text-transform:uppercase; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; }
+  .chip { padding:8px 14px; border-radius:20px; border:1px solid var(--border); background:var(--panel2);
+    color:var(--text); font-size:13px; cursor:pointer; transition:all .15s; }
+  .chip:hover { border-color:var(--accent); }
+  .chip.active { background:linear-gradient(135deg,#8b5cf6,#6d28d9); border-color:transparent; color:#fff; }
+  .status { text-align:center; padding:40px; color:var(--muted); }
+  .spinner { width:46px; height:46px; margin:0 auto 16px; border:3px solid var(--border); border-top-color:var(--accent);
+    border-radius:50%; animation:spin 1s linear infinite; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .result-wrap { display:flex; justify-content:center; margin-top:24px; }
+  .result-card { background:var(--panel2); border:1px solid var(--border); border-radius:16px; padding:14px; max-width:520px; width:100%; }
+  .result-card img { width:100%; border-radius:10px; display:block; }
+  .result-actions { display:flex; gap:8px; margin-top:12px; }
+  .result-actions button { flex:1; font-size:13px; padding:10px; }
+  h2.section-title { font-size:20px; margin:32px 0 16px; letter-spacing:.5px; }
+  .gallery { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:14px; }
+  .g-item { position:relative; border-radius:12px; overflow:hidden; border:1px solid var(--border); cursor:pointer; }
+  .g-item img { width:100%; display:block; aspect-ratio:1; object-fit:cover; }
+  .g-item .overlay { position:absolute; bottom:0; left:0; right:0; padding:10px; font-size:11px;
+    background:linear-gradient(transparent,rgba(10,10,20,.95)); color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .empty { color:var(--muted); text-align:center; padding:30px; grid-column:1/-1; font-size:14px; }
+  footer { position:relative; z-index:1; text-align:center; padding:30px 16px; color:var(--muted); font-size:12px;
+    border-top:1px solid var(--border); }
+  footer a { color:var(--accent); text-decoration:none; }
+  .toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:var(--accent); color:#fff;
+    padding:12px 24px; border-radius:12px; font-size:14px; z-index:99; opacity:0; transition:opacity .3s; pointer-events:none; }
+  .toast.show { opacity:1; }
+  @media (max-width:600px) { h1 { font-size:30px; } .actions { flex-direction:row; } }
+</style>
+</head>
+<body>
+<div class="stars"></div>
+
+<header>
+  <h1>VISIONAI</h1>
+  <div class="tagline">Free AI image generation — powered by open models, running right in your browser</div>
+  <div class="badge">BUILT BY TIOULUWAPE D. O. ADESUYAN</div>
+</header>
+
+<main>
+  <div class="studio">
+    <div class="prompt-row">
+      <textarea id="prompt" placeholder="Describe anything... e.g. 'a lighthouse made of glass on a stormy alien ocean, cinematic lighting'"></textarea>
+      <div class="actions">
+        <button class="btn-main" id="genBtn" onclick="generate()">✨ Generate</button>
+        <button class="btn-ghost" id="enhanceBtn" onclick="enhancePrompt()">🪄 Magic Prompt</button>
+      </div>
+    </div>
+    <div class="controls">
+      <label>Style</label>
+      <div class="chips" id="styleChips"></div>
+    </div>
+    <div id="resultArea"></div>
+  </div>
+
+  <h2 class="section-title">🖼️ Gallery</h2>
+  <div class="gallery" id="gallery"></div>
+</main>
+
+<footer>
+  VISIONAI by Tioluwalope Adesuyan · Generation is free & client-side via Puter.js ·
+  <a href="https://iwantrobus.github.io/classical-mechanics-site/">Physics Site</a>
+</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+const STYLES = {
+  'None': '',
+  'Photoreal': ', photorealistic, 8k, sharp focus, professional photography, cinematic lighting',
+  'Anime': ', anime style, vibrant colors, studio quality illustration, detailed lineart',
+  'Digital Art': ', digital art, trending on artstation, concept art, highly detailed',
+  'Oil Painting': ', classical oil painting, thick brush strokes, rich texture, museum quality',
+  'Cyberpunk': ', cyberpunk style, neon lights, futuristic, cinematic, moody atmosphere',
+  '3D Render': ', 3D render, octane render, unreal engine, ray tracing, ultra detailed',
+  'Fantasy': ', epic fantasy art, dramatic lighting, magical atmosphere, highly detailed',
+  'Minimal': ', minimalist design, clean composition, negative space, elegant'
+};
+let activeStyle = 'None';
+const gallery = JSON.parse(localStorage.getItem('visionai_gallery') || '[]');
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+function initChips() {
+  const wrap = document.getElementById('styleChips');
+  Object.keys(STYLES).forEach(name => {
+    const c = document.createElement('div');
+    c.className = 'chip' + (name === activeStyle ? ' active' : '');
+    c.textContent = name;
+    c.onclick = () => {
+      activeStyle = name;
+      document.querySelectorAll('.chip').forEach(x => x.classList.remove('active'));
+      c.classList.add('active');
+    };
+    wrap.appendChild(c);
+  });
+}
+
+function buildPrompt() {
+  const base = document.getElementById('prompt').value.trim();
+  return base + (STYLES[activeStyle] || '');
+}
+
+async function generate() {
+  const promptEl = document.getElementById('prompt');
+  const btn = document.getElementById('genBtn');
+  const area = document.getElementById('resultArea');
+  const base = promptEl.value.trim();
+  if (!base) { toast('Describe your image first!'); promptEl.focus(); return; }
+  const full = buildPrompt();
+
+  btn.disabled = true;
+  area.innerHTML = `<div class="status"><div class="spinner"></div>Dreaming your image...<br><small style="color:#666688">This can take up to a minute</small></div>`;
+
+  try {
+    const img = await puter.ai.txt2img(full);
+    const src = img.src || img;
+    btn.disabled = false;
+    area.innerHTML = `
+      <div class="result-wrap"><div class="result-card">
+        <img src="${src}" alt="Generated image">
+        <div class="result-actions">
+          <button class="btn-main" onclick="download('${encodeURIComponent(src)}')">⬇️ Download</button>
+          <button class="btn-ghost" onclick="regenerate()">🔁 Retry</button>
+        </div>
+      </div></div>`;
+    addToGallery(src, base);
+  } catch (e) {
+    btn.disabled = false;
+    area.innerHTML = `<div class="status">Generation failed: ${e.message || e}. Try again.</div>`;
+  }
+}
+
+async function enhancePrompt() {
+  const promptEl = document.getElementById('prompt');
+  const btn = document.getElementById('enhanceBtn');
+  const base = promptEl.value.trim();
+  if (!base) { toast('Write a basic idea first, then I\'ll expand it!'); promptEl.focus(); return; }
+  btn.disabled = true; btn.textContent = '⏳ Enhancing...';
+  try {
+    const resp = await puter.ai.chat(
+      `Rewrite this image-generation prompt to be vivid and detailed, one paragraph, no quotes, no preamble, just the prompt: ${base}`,
+      { model: 'gpt-4o-mini' }
+    );
+    const text = (typeof resp === 'string') ? resp : (resp?.message?.content || resp?.text || String(resp));
+    promptEl.value = text.trim().replace(/^["']|["']$/g, '');
+    toast('Prompt enhanced ✨');
+  } catch (e) {
+    toast('Enhancement unavailable — your prompt still works');
+  }
+  btn.disabled = false; btn.textContent = '🪄 Magic Prompt';
+}
+
+function regenerate() { generate(); }
+
+function download(encodedSrc) {
+  const src = decodeURIComponent(encodedSrc);
+  const a = document.createElement('a');
+  a.href = src; a.download = 'visionai_' + Date.now() + '.png';
+  document.body.appendChild(a); a.click(); a.remove();
+  toast('Downloaded 📥');
+}
+
+function addToGallery(src, prompt) {
+  gallery.unshift({ src, prompt, ts: Date.now() });
+  if (gallery.length > 24) gallery.pop();
+  try { localStorage.setItem('visionai_gallery', JSON.stringify(gallery)); } catch(e) {}
+  renderGallery();
+}
+
+function renderGallery() {
+  const g = document.getElementById('gallery');
+  if (!gallery.length) {
+    g.innerHTML = '<div class="empty">Your generated images will appear here. Nothing yet — go make something!</div>';
+    return;
+  }
+  g.innerHTML = gallery.map((item, i) => `
+    <div class="g-item" onclick="download('${encodeURIComponent(item.src)}')">
+      <img src="${item.src}" alt="Generated image" loading="lazy">
+      <div class="overlay">${item.prompt.slice(0, 60) || 'Untitled'}</div>
+    </div>`).join('');
+}
+
+initChips();
+renderGallery();
+</script>
+</body>
+</html>
