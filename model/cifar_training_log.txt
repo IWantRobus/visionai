@@ -1,0 +1,752 @@
+DATA READY — starting training
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 8, in <module>
+    from ddpm import cosine_alphas, TimeEmbed, ResBlock
+ModuleNotFoundError: No module named 'ddpm'
+DATA READY — starting training
+Loaded 50000 real internet-collected photos
+Loaded 50000 real internet-collected photos
+params: 1,519,187
+params: 1,519,187
+step 25/4000 | loss 0.4652 | 0.5 min
+step 25/4000 | loss 0.4652 | 0.5 min
+step 50/4000 | loss 0.2269 | 1.0 min
+step 50/4000 | loss 0.2269 | 1.0 min
+step 75/4000 | loss 0.1939 | 1.5 min
+step 75/4000 | loss 0.1939 | 1.5 min
+step 100/4000 | loss 0.1608 | 2.0 min
+step 100/4000 | loss 0.1608 | 2.0 min
+step 125/4000 | loss 0.1769 | 2.5 min
+step 125/4000 | loss 0.1769 | 2.5 min
+DATA READY — starting training
+Loaded 50000 real internet-collected photos
+resumed at step 100
+step 150/4000 | loss 0.1335 | 3.0 min
+step 150/4000 | loss 0.1335 | 3.0 min
+step 125/4000 | loss 0.1482 | 0.5 min
+step 175/4000 | loss 0.2360 | 3.5 min
+step 175/4000 | loss 0.2360 | 3.5 min
+step 150/4000 | loss 0.1319 | 1.0 min
+step 200/4000 | loss 0.2002 | 4.0 min
+step 200/4000 | loss 0.2002 | 4.0 min
+step 175/4000 | loss 0.1455 | 1.5 min
+step 225/4000 | loss 0.1239 | 4.5 min
+step 225/4000 | loss 0.1239 | 4.5 min
+step 200/4000 | loss 0.1255 | 2.0 min
+step 250/4000 | loss 0.1299 | 5.0 min
+step 250/4000 | loss 0.1299 | 5.0 min
+step 225/4000 | loss 0.1445 | 2.5 min
+step 275/4000 | loss 0.1547 | 5.5 min
+step 275/4000 | loss 0.1547 | 5.5 min
+step 250/4000 | loss 0.1102 | 3.0 min
+step 300/4000 | loss 0.1137 | 6.0 min
+step 300/4000 | loss 0.1137 | 6.0 min
+step 275/4000 | loss 0.2105 | 3.5 min
+step 325/4000 | loss 0.0760 | 6.5 min
+step 325/4000 | loss 0.0760 | 6.6 min
+step 300/4000 | loss 0.1754 | 4.1 min
+step 350/4000 | loss 0.1627 | 7.0 min
+step 350/4000 | loss 0.1627 | 7.1 min
+step 325/4000 | loss 0.1083 | 4.6 min
+step 375/4000 | loss 0.1568 | 7.5 min
+step 375/4000 | loss 0.1568 | 7.6 min
+step 350/4000 | loss 0.1142 | 5.1 min
+step 400/4000 | loss 0.1159 | 8.0 min
+step 400/4000 | loss 0.1159 | 8.1 min
+step 375/4000 | loss 0.1401 | 5.6 min
+step 425/4000 | loss 0.1654 | 8.6 min
+step 425/4000 | loss 0.1654 | 8.6 min
+step 400/4000 | loss 0.1025 | 6.1 min
+step 450/4000 | loss 0.1527 | 9.0 min
+step 450/4000 | loss 0.1527 | 9.1 min
+step 425/4000 | loss 0.0680 | 6.6 min
+step 475/4000 | loss 0.0986 | 9.5 min
+step 475/4000 | loss 0.0986 | 9.6 min
+step 450/4000 | loss 0.1522 | 7.1 min
+step 500/4000 | loss 0.1972 | 10.1 min
+step 500/4000 | loss 0.1972 | 10.1 min
+step 475/4000 | loss 0.1484 | 7.6 min
+step 525/4000 | loss 0.0892 | 10.6 min
+step 525/4000 | loss 0.0892 | 10.7 min
+step 500/4000 | loss 0.1084 | 8.1 min
+step 550/4000 | loss 0.1396 | 11.1 min
+step 550/4000 | loss 0.1396 | 11.2 min
+step 525/4000 | loss 0.1573 | 8.6 min
+step 575/4000 | loss 0.1026 | 11.6 min
+step 575/4000 | loss 0.1026 | 11.7 min
+step 550/4000 | loss 0.1467 | 9.1 min
+step 600/4000 | loss 0.1006 | 12.1 min
+step 600/4000 | loss 0.1006 | 12.2 min
+step 575/4000 | loss 0.0935 | 9.6 min
+step 625/4000 | loss 0.1215 | 12.6 min
+step 625/4000 | loss 0.1215 | 12.7 min
+step 600/4000 | loss 0.1902 | 10.1 min
+step 650/4000 | loss 0.1196 | 13.1 min
+step 650/4000 | loss 0.1196 | 13.2 min
+step 625/4000 | loss 0.0853 | 10.6 min
+step 675/4000 | loss 0.1040 | 13.6 min
+step 675/4000 | loss 0.1040 | 13.7 min
+step 650/4000 | loss 0.1344 | 11.1 min
+step 700/4000 | loss 0.1823 | 14.1 min
+step 700/4000 | loss 0.1823 | 14.2 min
+step 675/4000 | loss 0.0987 | 11.6 min
+step 725/4000 | loss 0.1192 | 14.6 min
+step 725/4000 | loss 0.1192 | 14.7 min
+step 700/4000 | loss 0.0969 | 12.1 min
+step 750/4000 | loss 0.1214 | 15.1 min
+step 750/4000 | loss 0.1214 | 15.2 min
+step 725/4000 | loss 0.1174 | 12.6 min
+step 775/4000 | loss 0.1434 | 15.6 min
+step 775/4000 | loss 0.1434 | 15.7 min
+step 750/4000 | loss 0.1164 | 13.1 min
+step 800/4000 | loss 0.0978 | 16.1 min
+step 800/4000 | loss 0.0978 | 16.2 min
+step 775/4000 | loss 0.1010 | 13.6 min
+step 825/4000 | loss 0.1586 | 16.6 min
+step 825/4000 | loss 0.1586 | 16.7 min
+step 800/4000 | loss 0.1793 | 14.1 min
+step 850/4000 | loss 0.1217 | 17.1 min
+step 850/4000 | loss 0.1217 | 17.2 min
+step 825/4000 | loss 0.1166 | 14.6 min
+step 875/4000 | loss 0.1698 | 17.6 min
+step 875/4000 | loss 0.1698 | 17.7 min
+step 850/4000 | loss 0.1187 | 15.1 min
+step 900/4000 | loss 0.1199 | 18.1 min
+step 900/4000 | loss 0.1199 | 18.2 min
+step 875/4000 | loss 0.1408 | 15.6 min
+step 925/4000 | loss 0.1281 | 18.6 min
+step 925/4000 | loss 0.1281 | 18.7 min
+step 900/4000 | loss 0.0957 | 16.1 min
+step 950/4000 | loss 0.0900 | 19.1 min
+step 950/4000 | loss 0.0900 | 19.2 min
+step 925/4000 | loss 0.1557 | 16.6 min
+step 975/4000 | loss 0.0481 | 19.6 min
+step 975/4000 | loss 0.0481 | 19.7 min
+step 950/4000 | loss 0.1198 | 17.1 min
+step 1000/4000 | loss 0.1063 | 20.1 min
+step 1000/4000 | loss 0.1063 | 20.2 min
+step 975/4000 | loss 0.1672 | 17.6 min
+step 1025/4000 | loss 0.0937 | 20.6 min
+step 1025/4000 | loss 0.0937 | 20.7 min
+step 1000/4000 | loss 0.1182 | 18.1 min
+step 1050/4000 | loss 0.0939 | 21.1 min
+step 1050/4000 | loss 0.0939 | 21.2 min
+step 1025/4000 | loss 0.1261 | 18.6 min
+step 1075/4000 | loss 0.1066 | 21.5 min
+step 1075/4000 | loss 0.1066 | 21.7 min
+step 1050/4000 | loss 0.0885 | 19.1 min
+step 1100/4000 | loss 0.1374 | 22.0 min
+step 1100/4000 | loss 0.1374 | 22.2 min
+step 1075/4000 | loss 0.0471 | 19.6 min
+step 1125/4000 | loss 0.0731 | 22.5 min
+step 1125/4000 | loss 0.0731 | 22.7 min
+step 1100/4000 | loss 0.1047 | 20.1 min
+step 1150/4000 | loss 0.1591 | 23.1 min
+step 1150/4000 | loss 0.1591 | 23.2 min
+step 1125/4000 | loss 0.0923 | 20.6 min
+step 1175/4000 | loss 0.0755 | 23.6 min
+step 1175/4000 | loss 0.0755 | 23.8 min
+step 1150/4000 | loss 0.0924 | 21.1 min
+step 1200/4000 | loss 0.1169 | 24.1 min
+step 1200/4000 | loss 0.1169 | 24.3 min
+step 1175/4000 | loss 0.1056 | 21.6 min
+step 1225/4000 | loss 0.1114 | 24.6 min
+step 1225/4000 | loss 0.1114 | 24.8 min
+step 1200/4000 | loss 0.1359 | 22.1 min
+step 1250/4000 | loss 0.1483 | 25.1 min
+step 1250/4000 | loss 0.1483 | 25.3 min
+step 1225/4000 | loss 0.0722 | 22.6 min
+step 1275/4000 | loss 0.1218 | 25.6 min
+step 1275/4000 | loss 0.1218 | 25.8 min
+step 1250/4000 | loss 0.1570 | 23.1 min
+step 1300/4000 | loss 0.1579 | 26.1 min
+step 1300/4000 | loss 0.1579 | 26.3 min
+step 1275/4000 | loss 0.0746 | 23.6 min
+step 1325/4000 | loss 0.1824 | 26.6 min
+step 1325/4000 | loss 0.1824 | 26.8 min
+step 1300/4000 | loss 0.1159 | 24.1 min
+step 1350/4000 | loss 0.0923 | 27.1 min
+step 1350/4000 | loss 0.0923 | 27.3 min
+step 1325/4000 | loss 0.1101 | 24.6 min
+step 1375/4000 | loss 0.0865 | 27.6 min
+step 1375/4000 | loss 0.0865 | 27.8 min
+step 1350/4000 | loss 0.1466 | 25.2 min
+step 1400/4000 | loss 0.1309 | 28.1 min
+step 1400/4000 | loss 0.1309 | 28.3 min
+step 1375/4000 | loss 0.1204 | 25.7 min
+step 1425/4000 | loss 0.0848 | 28.6 min
+step 1425/4000 | loss 0.0848 | 28.8 min
+step 1400/4000 | loss 0.1566 | 26.2 min
+step 1450/4000 | loss 0.1569 | 29.2 min
+step 1450/4000 | loss 0.1569 | 29.4 min
+step 1425/4000 | loss 0.1805 | 26.7 min
+DATA READY — starting training
+Loaded 50000 real internet-collected photos
+resumed at step 1400
+step 1425/4000 | loss 0.0680 | 0.5 min
+step 1450/4000 | loss 0.0642 | 1.0 min
+step 1475/4000 | loss 0.0825 | 1.5 min
+step 1500/4000 | loss 0.0749 | 2.0 min
+step 1525/4000 | loss 0.0855 | 2.5 min
+step 1550/4000 | loss 0.0686 | 3.0 min
+step 1575/4000 | loss 0.1519 | 3.6 min
+step 1600/4000 | loss 0.1232 | 4.1 min
+step 1625/4000 | loss 0.0775 | 4.6 min
+step 1650/4000 | loss 0.0803 | 5.1 min
+step 1675/4000 | loss 0.1079 | 5.6 min
+step 1700/4000 | loss 0.0771 | 6.1 min
+step 1725/4000 | loss 0.0471 | 6.7 min
+step 1750/4000 | loss 0.1214 | 7.2 min
+step 1775/4000 | loss 0.1222 | 7.7 min
+step 1800/4000 | loss 0.0855 | 8.2 min
+step 1825/4000 | loss 0.1293 | 8.8 min
+step 1850/4000 | loss 0.1224 | 9.3 min
+step 1875/4000 | loss 0.0762 | 9.8 min
+step 1900/4000 | loss 0.1633 | 10.3 min
+step 1925/4000 | loss 0.0707 | 10.9 min
+step 1950/4000 | loss 0.1128 | 11.4 min
+step 1975/4000 | loss 0.0823 | 11.9 min
+step 2000/4000 | loss 0.0831 | 12.4 min
+step 2025/4000 | loss 0.0999 | 12.9 min
+step 2050/4000 | loss 0.0994 | 13.5 min
+step 2075/4000 | loss 0.0861 | 14.0 min
+step 2100/4000 | loss 0.1584 | 14.5 min
+step 2125/4000 | loss 0.1015 | 15.0 min
+step 2150/4000 | loss 0.1034 | 15.5 min
+step 2175/4000 | loss 0.1222 | 16.0 min
+step 2200/4000 | loss 0.0844 | 16.6 min
+step 2225/4000 | loss 0.1348 | 17.1 min
+step 2250/4000 | loss 0.1057 | 17.6 min
+step 2275/4000 | loss 0.1479 | 18.1 min
+step 2300/4000 | loss 0.1079 | 18.6 min
+step 2325/4000 | loss 0.1125 | 19.1 min
+step 2350/4000 | loss 0.0781 | 19.6 min
+step 2375/4000 | loss 0.0411 | 20.1 min
+step 2400/4000 | loss 0.0930 | 20.6 min
+step 2425/4000 | loss 0.0841 | 21.2 min
+step 2450/4000 | loss 0.0818 | 21.7 min
+step 2475/4000 | loss 0.0952 | 22.2 min
+step 2500/4000 | loss 0.1211 | 22.7 min
+step 2525/4000 | loss 0.0653 | 23.3 min
+step 2550/4000 | loss 0.1385 | 23.8 min
+step 2575/4000 | loss 0.0683 | 24.3 min
+step 2600/4000 | loss 0.1064 | 24.8 min
+DATA READY — starting training
+Loaded 50000 real internet-collected photos
+resumed at step 2600
+step 2625/4000 | loss 0.0637 | 0.4 min
+step 2650/4000 | loss 0.0590 | 0.8 min
+step 2675/4000 | loss 0.0764 | 1.1 min
+step 2700/4000 | loss 0.0687 | 1.5 min
+step 2725/4000 | loss 0.0768 | 1.9 min
+step 2750/4000 | loss 0.0625 | 2.3 min
+step 2775/4000 | loss 0.1375 | 2.7 min
+step 2800/4000 | loss 0.1160 | 3.0 min
+step 2825/4000 | loss 0.0708 | 3.4 min
+step 2850/4000 | loss 0.0747 | 3.8 min
+step 2875/4000 | loss 0.0979 | 4.2 min
+step 2900/4000 | loss 0.0733 | 4.5 min
+step 2925/4000 | loss 0.0443 | 4.9 min
+step 2950/4000 | loss 0.1137 | 5.3 min
+step 2975/4000 | loss 0.1144 | 5.7 min
+step 3000/4000 | loss 0.0783 | 6.1 min
+step 3025/4000 | loss 0.1187 | 6.4 min
+step 3050/4000 | loss 0.1126 | 6.8 min
+step 3075/4000 | loss 0.0715 | 7.2 min
+step 3100/4000 | loss 0.1511 | 7.6 min
+step 3125/4000 | loss 0.0664 | 8.0 min
+step 3150/4000 | loss 0.1040 | 8.3 min
+step 3175/4000 | loss 0.0768 | 8.7 min
+step 3200/4000 | loss 0.0761 | 9.1 min
+step 3225/4000 | loss 0.0935 | 9.5 min
+step 3250/4000 | loss 0.0929 | 9.9 min
+step 3275/4000 | loss 0.0811 | 10.2 min
+step 3300/4000 | loss 0.1459 | 10.6 min
+step 3325/4000 | loss 0.0928 | 11.0 min
+step 3350/4000 | loss 0.0981 | 11.4 min
+step 3375/4000 | loss 0.1130 | 11.7 min
+step 3400/4000 | loss 0.0805 | 12.1 min
+step 3425/4000 | loss 0.1253 | 12.5 min
+step 3450/4000 | loss 0.0977 | 12.9 min
+step 3475/4000 | loss 0.1375 | 13.3 min
+step 3500/4000 | loss 0.1014 | 13.7 min
+step 3525/4000 | loss 0.1064 | 14.0 min
+step 3550/4000 | loss 0.0741 | 14.4 min
+step 3575/4000 | loss 0.0388 | 14.8 min
+step 3600/4000 | loss 0.0878 | 15.2 min
+DATA READY — starting training
+Loaded 50000 real internet-collected photos
+resumed at step 3600
+step 3625/4000 | loss 0.0607 | 0.4 min
+step 3650/4000 | loss 0.0563 | 0.8 min
+step 3675/4000 | loss 0.0728 | 1.2 min
+step 3700/4000 | loss 0.0653 | 1.6 min
+step 3725/4000 | loss 0.0726 | 2.0 min
+step 3750/4000 | loss 0.0593 | 2.4 min
+step 3775/4000 | loss 0.1313 | 2.8 min
+step 3800/4000 | loss 0.1120 | 3.2 min
+step 3825/4000 | loss 0.0671 | 3.6 min
+step 3850/4000 | loss 0.0706 | 4.0 min
+step 3875/4000 | loss 0.0934 | 4.4 min
+step 3900/4000 | loss 0.0706 | 4.8 min
+step 3925/4000 | loss 0.0430 | 5.2 min
+step 3950/4000 | loss 0.1097 | 5.6 min
+step 3975/4000 | loss 0.1098 | 6.0 min
+step 4000/4000 | loss 0.0746 | 6.4 min
+CHUNK DONE step 4000
+ALL TRAINING COMPLETE
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 125, in <module>
+    sample()
+  File "/usr/local/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 97, in sample
+    x, y = load_cifar  # unused, just for parity
+    ^^^^
+TypeError: cannot unpack non-iterable function object
+SAMPLES GENERATED
+DATA READY — starting training
+ALL TRAINING COMPLETE
+Traceback (most recent call last):
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 125, in <module>
+    sample()
+  File "/usr/local/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/conversations/6a1549534ed513da2a9fbd1b/cifar/cifar_ddpm.py", line 97, in sample
+    x, y = load_cifar  # unused, just for parity
+    ^^^^
+TypeError: cannot unpack non-iterable function object
+SAMPLES GENERATED
+denoise 250
+denoise 0
+saved cifar_samples.png
