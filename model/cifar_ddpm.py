@@ -59,7 +59,7 @@ class CondUNet(nn.Module):
         return self.out_conv(F.silu(self.out_norm(u1)))
 
 T = 500
-MAX_STEPS = 4000
+MAX_STEPS = int(os.environ.get("MAX_STEPS", "4000"))
 
 def train(minutes):
     x, y = load_cifar()

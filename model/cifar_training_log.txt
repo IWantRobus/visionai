@@ -750,3 +750,152 @@ SAMPLES GENERATED
 denoise 250
 denoise 0
 saved cifar_samples.png
+extending CIFAR-10 to 8000 steps
+Loaded 50000 real internet-collected photos
+resumed at step 4000
+step 4025/8000 | loss 0.0590 | 0.4 min
+step 4050/8000 | loss 0.0551 | 0.8 min
+step 4075/8000 | loss 0.0711 | 1.2 min
+step 4100/8000 | loss 0.0638 | 1.6 min
+step 4125/8000 | loss 0.0708 | 2.0 min
+step 4150/8000 | loss 0.0581 | 2.4 min
+step 4175/8000 | loss 0.1281 | 2.8 min
+step 4200/8000 | loss 0.1100 | 3.2 min
+extending CIFAR-10 to 8000 steps
+Loaded 50000 real internet-collected photos
+resumed at step 4200
+step 4225/8000 | loss 0.0581 | 0.4 min
+step 4250/8000 | loss 0.0540 | 0.8 min
+step 4275/8000 | loss 0.0695 | 1.2 min
+step 4300/8000 | loss 0.0629 | 1.6 min
+step 4325/8000 | loss 0.0694 | 2.0 min
+step 4350/8000 | loss 0.0571 | 2.4 min
+step 4375/8000 | loss 0.1259 | 2.8 min
+step 4400/8000 | loss 0.1087 | 3.2 min
+step 4425/8000 | loss 0.0650 | 3.6 min
+step 4450/8000 | loss 0.0687 | 4.0 min
+step 4475/8000 | loss 0.0912 | 4.4 min
+step 4500/8000 | loss 0.0694 | 4.8 min
+step 4525/8000 | loss 0.0422 | 5.2 min
+step 4550/8000 | loss 0.1066 | 5.6 min
+step 4575/8000 | loss 0.1070 | 6.0 min
+step 4600/8000 | loss 0.0729 | 6.4 min
+step 4625/8000 | loss 0.1111 | 6.8 min
+extending CIFAR-10 to 8000 steps
+Loaded 50000 real internet-collected photos
+resumed at step 4600
+step 4625/8000 | loss 0.0570 | 0.4 min
+step 4650/8000 | loss 0.0528 | 0.8 min
+step 4675/8000 | loss 0.0681 | 1.1 min
+step 4700/8000 | loss 0.0615 | 1.5 min
+step 4725/8000 | loss 0.0683 | 1.9 min
+step 4750/8000 | loss 0.0561 | 2.3 min
+step 4775/8000 | loss 0.1237 | 2.6 min
+step 4800/8000 | loss 0.1073 | 3.0 min
+step 4825/8000 | loss 0.0634 | 3.4 min
+step 4850/8000 | loss 0.0669 | 3.8 min
+step 4875/8000 | loss 0.0893 | 4.1 min
+step 4900/8000 | loss 0.0684 | 4.5 min
+step 4925/8000 | loss 0.0416 | 4.9 min
+extending CIFAR-10 to 8000 steps
+Loaded 50000 real internet-collected photos
+resumed at step 4900
+step 4925/8000 | loss 0.0564 | 0.4 min
+step 4950/8000 | loss 0.0517 | 0.8 min
+step 4975/8000 | loss 0.0667 | 1.1 min
+step 5000/8000 | loss 0.0604 | 1.5 min
+step 5025/8000 | loss 0.0671 | 1.9 min
+step 5050/8000 | loss 0.0554 | 2.3 min
+step 5075/8000 | loss 0.1217 | 2.6 min
+step 5100/8000 | loss 0.1060 | 3.0 min
+step 5125/8000 | loss 0.0624 | 3.4 min
+step 5150/8000 | loss 0.0657 | 3.8 min
+step 5175/8000 | loss 0.0878 | 4.2 min
+step 5200/8000 | loss 0.0677 | 4.5 min
+step 5225/8000 | loss 0.0416 | 4.9 min
+Loaded 50000 real internet-collected photos
+resumed at step 5400
+step 5425/8000 | loss 0.0551 | 0.5 min
+step 5450/8000 | loss 0.0504 | 1.0 min
+step 5475/8000 | loss 0.0648 | 1.5 min
+step 5500/8000 | loss 0.0585 | 2.0 min
+step 5525/8000 | loss 0.0653 | 2.5 min
+step 5550/8000 | loss 0.0544 | 3.0 min
+step 5575/8000 | loss 0.1183 | 3.4 min
+step 5600/8000 | loss 0.1037 | 3.9 min
+step 5625/8000 | loss 0.0617 | 4.4 min
+step 5650/8000 | loss 0.0651 | 4.9 min
+Loaded 50000 real internet-collected photos
+resumed at step 5600
+step 5675/8000 | loss 0.0865 | 5.3 min
+step 5625/8000 | loss 0.0546 | 0.5 min
+step 5700/8000 | loss 0.0670 | 5.8 min
+step 5650/8000 | loss 0.0497 | 1.0 min
+step 5725/8000 | loss 0.0414 | 6.3 min
+step 5675/8000 | loss 0.0637 | 1.4 min
+step 5750/8000 | loss 0.1032 | 6.8 min
+step 5700/8000 | loss 0.0578 | 1.9 min
+step 5775/8000 | loss 0.1042 | 7.3 min
+step 5725/8000 | loss 0.0646 | 2.4 min
+step 5800/8000 | loss 0.0714 | 7.8 min
+step 5750/8000 | loss 0.0538 | 2.9 min
+step 5825/8000 | loss 0.1085 | 8.3 min
+step 5775/8000 | loss 0.1169 | 3.4 min
+step 5850/8000 | loss 0.1026 | 8.7 min
+step 5800/8000 | loss 0.1030 | 3.9 min
+step 5875/8000 | loss 0.0660 | 9.2 min
+step 5825/8000 | loss 0.0620 | 4.4 min
+Loaded 50000 real internet-collected photos
+resumed at step 5800
+step 5825/8000 | loss 0.0545 | 0.5 min
+step 5850/8000 | loss 0.0491 | 1.0 min
+step 5875/8000 | loss 0.0629 | 1.5 min
+step 5900/8000 | loss 0.0573 | 2.0 min
+step 5925/8000 | loss 0.0635 | 2.5 min
+step 5950/8000 | loss 0.0532 | 3.0 min
+step 5975/8000 | loss 0.1152 | 3.6 min
+step 6000/8000 | loss 0.1015 | 4.1 min
+step 6025/8000 | loss 0.0619 | 4.6 min
+Loaded 50000 real internet-collected photos
+resumed at step 6000
+step 6025/8000 | loss 0.0538 | 0.4 min
+step 6050/8000 | loss 0.0488 | 0.8 min
+step 6075/8000 | loss 0.0622 | 1.2 min
+step 6100/8000 | loss 0.0566 | 1.6 min
+step 6125/8000 | loss 0.0628 | 2.0 min
+step 6150/8000 | loss 0.0530 | 2.4 min
+step 6175/8000 | loss 0.1148 | 2.8 min
+step 6200/8000 | loss 0.1007 | 3.2 min
+step 6225/8000 | loss 0.0622 | 3.6 min
+step 6250/8000 | loss 0.0653 | 4.0 min
+step 6275/8000 | loss 0.0866 | 4.4 min
+step 6300/8000 | loss 0.0669 | 4.8 min
+Loaded 50000 real internet-collected photos
+resumed at step 6300
+step 6325/8000 | loss 0.0534 | 0.4 min
+step 6350/8000 | loss 0.0483 | 0.9 min
+step 6375/8000 | loss 0.0617 | 1.3 min
+step 6400/8000 | loss 0.0558 | 1.7 min
+step 6425/8000 | loss 0.0627 | 2.1 min
+step 6450/8000 | loss 0.0525 | 2.5 min
+step 6475/8000 | loss 0.1141 | 2.9 min
+step 6500/8000 | loss 0.0994 | 3.3 min
+step 6525/8000 | loss 0.0608 | 3.7 min
+step 6550/8000 | loss 0.0643 | 4.1 min
+step 6575/8000 | loss 0.0854 | 4.5 min
+Loaded 50000 real internet-collected photos
+resumed at step 6500
+step 6525/8000 | loss 0.0527 | 0.4 min
+step 6550/8000 | loss 0.0473 | 0.8 min
+step 6575/8000 | loss 0.0608 | 1.2 min
+step 6600/8000 | loss 0.0554 | 1.6 min
+step 6625/8000 | loss 0.0619 | 2.0 min
+step 6650/8000 | loss 0.0526 | 2.4 min
+step 6675/8000 | loss 0.1135 | 2.8 min
+step 6700/8000 | loss 0.0982 | 3.3 min
+step 6725/8000 | loss 0.0611 | 3.7 min
+step 6750/8000 | loss 0.0646 | 4.1 min
+step 6775/8000 | loss 0.0856 | 4.5 min
+denoise 250
+denoise 0
+saved cifar_samples.png
