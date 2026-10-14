@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VISIONAI Studio — Free AI Image Generator</title>
+<meta name="description" content="Free unlimited AI image generator. No sign-up, no API keys.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='80' font-size='80'>👁️</text></svg>">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --bg:#0a0a14; --panel:#14142a; --panel2:#1c1c3a; --accent:#8b5cf6; --accent2:#06b6d4;
+    --text:#e8e8f4; --muted:#8888aa; --border:rgba(139,92,246,.25);
+  }
+  body { background:var(--bg); color:var(--text); font-family:'Segoe UI',system-ui,sans-serif; min-height:100vh; }
+  .stars { position:fixed; inset:0; pointer-events:none; z-index:0;
+    background:radial-gradient(ellipse at 20% 0%, rgba(139,92,246,.15), transparent 50%),
+               radial-gradient(ellipse at 80% 100%, rgba(6,182,212,.1), transparent 50%); }
+  header { position:relative; z-index:1; text-align:center; padding:36px 16px 18px; }
+  h1 { font-size:36px; font-weight:800; letter-spacing:2px;
+    background:linear-gradient(90deg,#8b5cf6,#06b6d4,#8b5cf6); -webkit-background-clip:text; background-clip:text; color:transparent;
+    animation:shimmer 6s linear infinite; background-size:200% auto; }
+  @keyframes shimmer { to { background-position:200% center; } }
+  .tagline { color:var(--muted); font-size:13px; margin-top:6px; }
+  main { position:relative; z-index:1; max-width:900px; margin:0 auto; padding:0 16px 60px; }
+  .studio { background:var(--panel); border:1px solid var(--border); border-radius:20px; padding:22px; margin-bottom:26px;
+    box-shadow:0 20px 60px rgba(0,0,0,.5); }
+  label { display:block; font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:1.5px; margin:14px 0 7px; }
+  textarea { width:100%; min-height:90px; resize:vertical; background:var(--panel2); border:1px solid var(--border);
+    border-radius:12px; color:var(--text); padding:13px; font-size:15px; font-family:inherit; }
+  textarea:focus, select:focus { outline:none; border-color:var(--accent); }
+  select { width:100%; background:var(--panel2); border:1px solid var(--border); border-radius:12px; color:var(--text);
+    padding:12px; font-size:15px; appearance:none; }
+  .row { display:flex; gap:14px; flex-wrap:wrap; }
+  .row > div { flex:1; min-width:150px; }
+  button { cursor:pointer; border:none; border-radius:14px; font-family:inherit; }
+  .generate { width:100%; margin-top:20px; padding:16px; font-size:18px; font-weight:700; color:#fff;
+    background:linear-gradient(90deg,#8b5cf6,#06b6d4); transition:transform .15s, opacity .3s; }
+  .generate:hover { transform:translateY(-2px); }
+  .generate:disabled { opacity:.45; cursor:wait; transform:none; }
+  #status { text-align:center; color:var(--muted); font-size:14px; margin-top:14px; min-height:20px; }
+  #status.err { color:#ff6b81; }
+  #verifyWrap { display:none; margin-top:16px; text-align:center; }
+  #verifyWrap .note { color:var(--muted); font-size:13px; margin-bottom:10px; }
+  #verifyFrame { width:100%; max-width:400px; height:330px; border:1px solid var(--border); border-radius:12px; background:#fff; }
+  .gallery { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px; }
+  .card { background:var(--panel); border:1px solid var(--border); border-radius:16px; overflow:hidden; position:relative; }
+  .card img { width:100%; display:block; }
+  .card .meta { padding:10px 12px; font-size:12px; color:var(--muted); display:flex; justify-content:space-between; align-items:center; }
+  .card a { color:var(--accent2); text-decoration:none; font-weight:600; }
+  .empty { color:var(--muted); text-align:center; padding:40px 10px; font-size:14px; grid-column:1/-1; }
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<header>
+  <h1>VISIONAI STUDIO</h1>
+  <div class="tagline">Free unlimited AI image generation — no sign-up, no keys</div>
+</header>
+<main>
+  <div class="studio">
+    <label>📝 Description</label>
+    <textarea id="prompt" placeholder="A ship sailing through a sea of stars, cinematic lighting..."></textarea>
+    <div class="row">
+      <div>
+        <label>🎨 Art Style</label>
+        <select id="style">
+          <option value="">No style</option>
+          <option value="cinematic film still, dramatic lighting">Cinematic</option>
+          <option value="digital painting, trending on artstation">Digital Painting</option>
+          <option value="concept art, highly detailed">Concept Art</option>
+          <option value="professional photography, sharp focus">Professional Photo</option>
+          <option value="anime screencap, high quality">Anime</option>
+          <option value="painted anime style">Painted Anime</option>
+          <option value="cute anime style, soft lighting">Cute Anime</option>
+          <option value="studio ghibli style">Studio Ghibli</option>
+          <option value="oil painting, textured brushwork">Oil Painting</option>
+          <option value="watercolor painting">Watercolor</option>
+          <option value="fantasy painting, epic">Fantasy Painting</option>
+          <option value="pixel art">Pixel Art</option>
+          <option value="vintage comic book art">Vintage Comic</option>
+          <option value="cartoon style, bold outlines">Cartoon</option>
+          <option value="pencil sketch drawing">Pencil</option>
+          <option value="crayon drawing">Crayon Drawing</option>
+          <option value="3d render, octane, soft lighting">3D Render</option>
+          <option value="illustration">Illustration</option>
+          <option value="tattoo design, bold lines">Tattoo Design</option>
+          <option value="1990s photograph, film grain">1990s Photo</option>
+          <option value="1980s photograph, film grain">1980s Photo</option>
+          <option value="1950s photograph, vintage">1950s Photo</option>
+        </select>
+      </div>
+      <div>
+        <label>🖼️ Size</label>
+        <select id="resolution">
+          <option value="512x512">Square 512</option>
+          <option value="512x768">Portrait 512×768</option>
+          <option value="768x512">Landscape 768×512</option>
+        </select>
+      </div>
+    </div>
+    <button class="generate" id="go" onclick="startGenerate()">✨ generate</button>
+    <div id="status"></div>
+    <div id="verifyWrap">
+      <div class="note">One-time human check (it keeps the service free) — tap it below:</div>
+      <iframe id="verifyFrame"></iframe>
+    </div>
+  </div>
+  <div class="gallery" id="gallery">
+    <div class="empty" id="empty">Your generated images appear here.</div>
+  </div>
+</main>
+<script>
+  const API = 'https://image-generation.perchance.org/api';
+  const CHANNEL = 'ai-text-to-image-generator';
+  const $ = id => document.getElementById(id);
+  const statusEl = $('status');
+
+  function randHex(bytes) {
+    const a = new Uint8Array(bytes || 16);
+    crypto.getRandomValues(a);
+    return Array.from(a).map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  let userKey = localStorage.getItem('visionai_userKey');
+  if (!userKey) { userKey = randHex(16); localStorage.setItem('visionai_userKey', userKey); }
+  let verified = false;
+
+  function setStatus(msg, err) { statusEl.textContent = msg; statusEl.className = err ? 'err' : ''; }
+
+  async function checkVerified() {
+    try {
+      const r = await fetch(`${API}/checkVerificationStatus?userKey=${userKey}&nonce=${randHex(8)}`);
+      if (!r.ok) return false;
+      const t = (await r.text()).trim();
+      return t === 'true' || t.includes('true');
+    } catch (e) { return false; }
+  }
+
+  async function ensureVerified() {
+    if (verified) return true;
+    if (await checkVerified()) { verified = true; return true; }
+    // show the one-time verification frame
+    $('verifyWrap').style.display = 'block';
+    $('verifyFrame').src = `${API}/verify?userKey=${userKey}&nonce=${randHex(8)}`;
+    setStatus('Waiting for the one-time check...');
+    for (let i = 0; i < 120; i++) {
+      await new Promise(r => setTimeout(r, 2000));
+      if (await checkVerified()) {
+        verified = true;
+        $('verifyWrap').style.display = 'none';
+        setStatus('Verified! Generating...');
+        return true;
+      }
+    }
+    throw new Error('verification timeout');
+  }
+
+  function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+  async function startGenerate() {
+    const btn = $('go');
+    const prompt = $('prompt').value.trim();
+    if (!prompt) { setStatus('Add a description first ✏️', true); return; }
+    btn.disabled = true;
+    try {
+      await ensureVerified();
+      const style = $('style').value;
+      const fullPrompt = style ? `${prompt}, ${style}` : prompt;
+      setStatus('Painting your image... (usually 10-40 seconds)');
+      const imageId = await generate(fullPrompt);
+      const blobUrl = await downloadImage(imageId);
+      addCard(blobUrl, prompt);
+      setStatus('Done ✨');
+    } catch (e) {
+      console.error(e);
+      setStatus('Something went wrong: ' + e.message, true);
+    } finally {
+      btn.disabled = false;
+    }
+  }
+
+  async function generate(prompt) {
+    const requestId = randHex(8);
+    const url = `${API}/generate?prompt=${encodeURIComponent(prompt)}` +
+      `&negativePrompt=&seed=-1&resolution=${encodeURIComponent($('resolution').value)}` +
+      `&guidanceScale=7&userKey=${userKey}&channel=${CHANNEL}&subChannel=public` +
+      `&requestId=${requestId}&nonce=${randHex(8)}`;
+    for (let i = 0; i < 90; i++) {
+      const r = await fetch(url);
+      if (r.status === 403) throw new Error('blocked (try refreshing the page)');
+      const t = await r.text();
+      try {
+        const j = JSON.parse(t);
+        if (j.imageId) return j.imageId;
+        if (j.status && j.status !== 'pending' && j.status !== 'processing' && j.status !== 'in_progress') {
+          throw new Error('server said: ' + (j.status || t.slice(0, 80)));
+        }
+      } catch (e) {
+        if (e instanceof SyntaxError) throw new Error('unexpected response: ' + t.slice(0, 80));
+        throw e;
+      }
+      await sleep(2000);
+    }
+    throw new Error('timed out waiting for the image');
+  }
+
+  async function downloadImage(imageId) {
+    const url = `${API}/downloadTemporary?imageId=${imageId}&channel=${CHANNEL}&subChannel=public&userKey=${userKey}&nonce=${randHex(8)}`;
+    const r = await fetch(url);
+    if (!r.ok) throw new Error('download failed');
+    const blob = await r.blob();
+    return URL.createObjectURL(blob);
+  }
+
+  function addCard(blobUrl, prompt) {
+    const empty = $('empty'); if (empty) empty.remove();
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `<img src="${blobUrl}" alt="generated image">
+      <div class="meta"><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:60%">${prompt.slice(0, 30)}</span>
+      <a href="${blobUrl}" download="visionai_${Date.now()}.png">⬇ save</a></div>`;
+    $('gallery').prepend(card);
+  }
+</script>
+</body>
+</html>
