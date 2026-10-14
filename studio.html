@@ -226,9 +226,23 @@
       const seed = (opts.seed !== '' && opts.seed != null) ? (Number(opts.seed) + idx) : Math.floor(Math.random() * 1e9);
       let p = prompt;
       if (opts.negativePrompt) p += `, avoid ${opts.negativePrompt}`;
-      const url = 'https://image.pollinations.ai/prompt/' + encodeURIComponent(p) +
-                  `?width=${w}&height=${h}&nologo=true&seed=${seed}&model=flux`;
-      return Promise.resolve({ ok: true, url, turbo: true });
+      const base = 'https://image.pollinations.ai/prompt/' + encodeURIComponent(p) +
+                  `?width=${w}&height=${h}&nologo=true&model=flux&seed=`;
+      return new Promise((resolve, reject) => {
+        let tries = 0;
+        const attempt = () => {
+          const url = base + (seed + tries * 7919);
+          const im = new Image();
+          im.onload = () => resolve({ ok: true, url, turbo: true });
+          im.onerror = () => {
+            tries++;
+            if (tries >= 4) reject(new Error('engine busy'));
+            else setTimeout(attempt, 2500 * tries);
+          };
+          im.src = url;
+        };
+        attempt();
+      });
     }
     const ck = prompt + JSON.stringify(opts || {});
     if (_cache[ck]) return Promise.resolve({ ok: true, url: _cache[ck], cached: true });
@@ -280,14 +294,20 @@
       const tick = setInterval(() => {
         doneCount = results.filter(Boolean).length;
         if (doneCount >= n) { clearInterval(tick); setStatus('generation complete'); btn.disabled = false; }
-        else setStatus(`synthesizing ${Math.min(doneCount + 1, n)} of ${n}... (10-40s each)`);
+        else if ($('engine').value !== 'turbo') setStatus(`synthesizing ${Math.min(doneCount + 1, n)} of ${n}... (10-40s each)`);
       }, 800);
       const turbo = $('engine').value === 'turbo';
       if (turbo) { setStatus('streaming images from the neural engine...'); }
-      const jobs = results.map((_, i) => generateOne(fullPrompt, opts, i)
+      const runOne = i => generateOne(fullPrompt, opts, i)
         .then(r => { results[i] = r; fillCard(i, r); })
-        .catch(e => { console.error(e); }));
-      await Promise.all(jobs);
+        .catch(e => {
+          console.error(e);
+          results[i] = { failed: true };
+          const c = $('card-' + i);
+          if (c) c.innerHTML = '<div class="placeholder">ENGINE BUSY — tap generate again</div>';
+        });
+      if (turbo) { for (let i = 0; i < n; i++) { setStatus(`synthesizing ${i + 1} of ${n}...`); await runOne(i); } }
+      else { await Promise.all(results.map((_, i) => runOne(i))); }
       clearInterval(tick);
       setStatus('generation complete');
     } catch (e) {
