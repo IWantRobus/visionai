@@ -126,6 +126,13 @@
     </div>
     <div class="row">
       <div>
+        <label>Engine</label>
+        <select id="engine">
+          <option value="turbo" selected>⚡ Turbo (fast)</option>
+          <option value="perchance">🌿 Perchance (slow)</option>
+        </select>
+      </div>
+      <div>
         <label>Negative prompt</label>
         <input id="negative" placeholder="blurry, deformed, text, watermark...">
       </div>
@@ -211,7 +218,18 @@
   // 2) Generate one image: hidden API iframe + postMessage reply tagged
   //    with a unique request id.
   const _cache = {};
-  function generateOne(prompt, opts) {
+  function generateOne(prompt, opts, idx) {
+    const engine = $('engine').value;
+    // TURBO engine: direct image URL (pollinations.ai) — fast, no keys, no iframe
+    if (engine === 'turbo') {
+      const [w, h] = ($('resolution').value || '512x512').split('x');
+      const seed = (opts.seed !== '' && opts.seed != null) ? (Number(opts.seed) + idx) : Math.floor(Math.random() * 1e9);
+      let p = prompt;
+      if (opts.negativePrompt) p += `, avoid ${opts.negativePrompt}`;
+      const url = 'https://image.pollinations.ai/prompt/' + encodeURIComponent(p) +
+                  `?width=${w}&height=${h}&nologo=true&seed=${seed}&model=flux`;
+      return Promise.resolve({ ok: true, url, turbo: true });
+    }
     const ck = prompt + JSON.stringify(opts || {});
     if (_cache[ck]) return Promise.resolve({ ok: true, url: _cache[ck], cached: true });
     return new Promise((resolve, reject) => {
@@ -264,7 +282,9 @@
         if (doneCount >= n) { clearInterval(tick); setStatus('generation complete'); btn.disabled = false; }
         else setStatus(`synthesizing ${Math.min(doneCount + 1, n)} of ${n}... (10-40s each)`);
       }, 800);
-      const jobs = results.map((_, i) => generateOne(fullPrompt, opts)
+      const turbo = $('engine').value === 'turbo';
+      if (turbo) { setStatus('streaming images from the neural engine...'); }
+      const jobs = results.map((_, i) => generateOne(fullPrompt, opts, i)
         .then(r => { results[i] = r; fillCard(i, r); })
         .catch(e => { console.error(e); }));
       await Promise.all(jobs);
@@ -290,9 +310,14 @@
     const card = $('card-' + i);
     const url = result.url || result.dataUrl;
     if (!url || !card) return;
-    card.innerHTML = `<img src="${url}" alt="generated image">
+    card.innerHTML = `<div class="placeholder">RECEIVING...</div><img src="${url}" alt="generated image" style="display:none">
       <div class="meta"><span class="p"></span><a href="${url}" target="_blank" rel="noopener">⬇ open</a></div>`;
     card.querySelector('.p').textContent = $('prompt').value.slice(0, 32);
+    const img = card.querySelector('img');
+    img.onload = () => { img.style.display = 'block'; card.querySelector('.placeholder').remove(); };
+    img.onerror = () => {
+      card.querySelector('.placeholder').textContent = 'IMAGE FAILED — tap generate again';
+    };
   }
 </script>
 </body>
