@@ -3,71 +3,85 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VISIONAI Studio — Free AI Image Generator</title>
+<title>VISIONAI Studio — Neural Image Engine</title>
 <meta name="description" content="Free unlimited AI image generation. No sign-up, no keys. Powered by the Perchance image API.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='80' font-size='80'>👁️</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   :root {
-    --bg:#0a0a14; --panel:#14142a; --panel2:#1c1c3a; --accent:#8b5cf6; --accent2:#06b6d4;
-    --text:#e8e8f4; --muted:#8888aa; --border:rgba(139,92,246,.25);
+    --bg:#03040a; --panel:rgba(16,20,40,.72); --panel2:rgba(8,12,30,.85);
+    --neon:#00f0ff; --neon2:#a855f7; --text:#d8faff; --muted:#5f7a95;
+    --border:rgba(0,240,255,.22); --glow:0 0 18px rgba(0,240,255,.25);
   }
-  body { background:var(--bg); color:var(--text); font-family:'Segoe UI',system-ui,sans-serif; min-height:100vh; }
-  .stars { position:fixed; inset:0; pointer-events:none; z-index:0;
-    background:radial-gradient(ellipse at 20% 0%, rgba(139,92,246,.15), transparent 50%),
-               radial-gradient(ellipse at 80% 100%, rgba(6,182,212,.1), transparent 50%); }
-  header { position:relative; z-index:1; text-align:center; padding:36px 16px 18px; }
-  h1 { font-size:36px; font-weight:800; letter-spacing:2px;
-    background:linear-gradient(90deg,#8b5cf6,#06b6d4,#8b5cf6); -webkit-background-clip:text; background-clip:text; color:transparent;
-    animation:shimmer 6s linear infinite; background-size:200% auto; }
-  @keyframes shimmer { to { background-position:200% center; } }
-  .tagline { color:var(--muted); font-size:13px; margin-top:6px; }
-  main { position:relative; z-index:1; max-width:980px; margin:0 auto; padding:0 16px 60px; }
-  .studio { background:var(--panel); border:1px solid var(--border); border-radius:20px; padding:22px; margin-bottom:26px;
-    box-shadow:0 20px 60px rgba(0,0,0,.5); }
-  label { display:block; font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:1.5px; margin:14px 0 7px; }
-  textarea, input, select { background:var(--panel2); border:1px solid var(--border); border-radius:12px; color:var(--text);
-    padding:13px; font-size:15px; font-family:inherit; width:100%; }
+  body { background:var(--bg); color:var(--text); font-family:'Rajdhani',sans-serif; min-height:100vh; overflow-x:hidden; }
+  canvas#neural { position:fixed; inset:0; z-index:0; opacity:.55; }
+  .scanlines { position:fixed; inset:0; z-index:1; pointer-events:none;
+    background:repeating-linear-gradient(0deg, rgba(0,240,255,.025) 0 1px, transparent 1px 3px); }
+  header { position:relative; z-index:2; text-align:center; padding:38px 16px 10px; }
+  h1 { font-family:'Orbitron',sans-serif; font-size:34px; font-weight:900; letter-spacing:6px; color:var(--neon);
+    text-shadow:0 0 12px rgba(0,240,255,.7), 0 0 40px rgba(0,240,255,.35); animation:pulseGlow 3s ease-in-out infinite; }
+  @keyframes pulseGlow { 50% { text-shadow:0 0 22px rgba(0,240,255,.95), 0 0 60px rgba(0,240,255,.5); } }
+  .sub { font-family:'Orbitron',sans-serif; font-size:10px; letter-spacing:5px; color:var(--neon2);
+    text-transform:uppercase; margin-top:10px; }
+  .sub::before, .sub::after { content:"//"; color:var(--muted); margin:0 8px; }
+  .tagline { color:var(--muted); font-size:15px; margin-top:8px; letter-spacing:1px; }
+  main { position:relative; z-index:2; max-width:980px; margin:0 auto; padding:0 16px 50px; }
+  .studio { background:var(--panel); border:1px solid var(--border); border-radius:4px 20px 4px 20px;
+    padding:24px; margin-bottom:26px; backdrop-filter:blur(12px); box-shadow:var(--glow), inset 0 0 60px rgba(0,240,255,.03); }
+  label { display:block; font-family:'Orbitron',sans-serif; font-size:10px; color:var(--neon); letter-spacing:2.5px;
+    margin:16px 0 7px; text-transform:uppercase; }
+  label::before { content:"▮ "; color:var(--neon2); }
+  textarea, input, select { background:var(--panel2); border:1px solid var(--border); border-radius:8px; color:var(--text);
+    padding:13px; font-size:16px; font-family:'Rajdhani',sans-serif; font-weight:600; width:100%; letter-spacing:.5px; }
   textarea { min-height:90px; resize:vertical; }
-  textarea:focus, input:focus, select:focus { outline:none; border-color:var(--accent); }
+  textarea:focus, input:focus, select:focus { outline:none; border-color:var(--neon); box-shadow:var(--glow); }
   select { appearance:none; }
   .row { display:flex; gap:14px; flex-wrap:wrap; }
   .row > div { flex:1; min-width:150px; }
-  button { cursor:pointer; border:none; border-radius:14px; font-family:inherit; }
-  .generate { width:100%; margin-top:20px; padding:16px; font-size:18px; font-weight:700; color:#fff;
-    background:linear-gradient(90deg,#8b5cf6,#06b6d4); transition:transform .15s, opacity .3s; }
-  .generate:hover { transform:translateY(-2px); }
-  .generate:disabled { opacity:.45; cursor:wait; transform:none; }
-  #status { text-align:center; color:var(--muted); font-size:14px; margin-top:14px; min-height:20px; }
-  #status.err { color:#ff6b81; }
+  button { cursor:pointer; font-family:'Orbitron',sans-serif; border:none; }
+  .generate { width:100%; margin-top:22px; padding:17px; font-size:16px; font-weight:700; letter-spacing:4px; color:#03040a;
+    background:linear-gradient(90deg,var(--neon),#7df9ff,var(--neon)); border-radius:8px;
+    box-shadow:0 0 22px rgba(0,240,255,.5); transition:transform .15s, box-shadow .3s; text-transform:uppercase; }
+  .generate:hover { transform:translateY(-2px); box-shadow:0 0 34px rgba(0,240,255,.8); }
+  .generate:disabled { opacity:.4; cursor:wait; transform:none; }
+  #status { text-align:center; color:var(--neon); font-size:15px; margin-top:14px; min-height:22px; letter-spacing:1px;
+    font-weight:600; text-shadow:0 0 8px rgba(0,240,255,.5); }
+  #status::before { content:"▮▮▮ "; color:var(--neon2); }
+  #status.err { color:#ff4d6d; text-shadow:0 0 8px rgba(255,77,109,.5); }
   .gallery { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px; }
-  .card { background:var(--panel); border:1px solid var(--border); border-radius:16px; overflow:hidden; }
+  .card { background:var(--panel); border:1px solid var(--border); border-radius:4px 14px 4px 14px; overflow:hidden;
+    box-shadow:0 0 14px rgba(0,240,255,.12); }
   .card img { width:100%; display:block; }
-  .card .meta { padding:10px 12px; font-size:12px; color:var(--muted); display:flex; justify-content:space-between; align-items:center; gap:8px; }
-  .card a { color:var(--accent2); text-decoration:none; font-weight:600; white-space:nowrap; }
+  .card .meta { padding:10px 12px; font-size:13px; color:var(--muted); display:flex; justify-content:space-between;
+    align-items:center; gap:8px; font-weight:600; }
+  .card a { color:var(--neon); text-decoration:none; font-weight:700; white-space:nowrap; text-transform:uppercase; font-size:12px; letter-spacing:1px; }
   .card .p { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-  .placeholder { border-radius:16px; aspect-ratio:1; display:flex; align-items:center; justify-content:center;
-    background:linear-gradient(110deg, var(--panel2) 8%, #26265a 18%, var(--panel2) 33%);
-    background-size:200% 100%; animation:wave 1.4s linear infinite; color:var(--muted); font-size:14px; }
+  .placeholder { border-radius:4px 14px 4px 14px; aspect-ratio:1; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(110deg, rgba(8,12,30,.9) 8%, rgba(0,240,255,.12) 18%, rgba(8,12,30,.9) 33%);
+    background-size:200% 100%; animation:wave 1.4s linear infinite; color:var(--neon); font-family:'Orbitron',sans-serif;
+    font-size:11px; letter-spacing:3px; }
   @keyframes wave { to { background-position:-200% 0; } }
-  .empty { color:var(--muted); text-align:center; padding:40px 10px; font-size:14px; grid-column:1/-1; }
-  footer { text-align:center; color:var(--muted); font-size:12px; padding:0 16px 40px; }
-  footer a { color:var(--accent); text-decoration:none; }
+  .empty { color:var(--muted); text-align:center; padding:40px 10px; font-size:15px; grid-column:1/-1; letter-spacing:1px; }
+  footer { text-align:center; color:var(--muted); font-size:12px; padding:0 16px 40px; z-index:2; position:relative; letter-spacing:2px; }
+  footer a { color:var(--neon2); text-decoration:none; }
 </style>
 </head>
 <body>
-<div class="stars"></div>
+<canvas id="neural"></canvas>
+<div class="scanlines"></div>
 <header>
   <h1>VISIONAI STUDIO</h1>
-  <div class="tagline">Free unlimited AI image generation — no sign-up, no keys</div>
+  <div class="sub">Neural Image Engine v2.0</div>
+  <div class="tagline">Free · Unlimited · No sign-up · No keys</div>
 </header>
 <main>
   <div class="studio">
-    <label>📝 Description</label>
+    <label>Description</label>
     <textarea id="prompt" placeholder="A ship sailing through a sea of stars, cinematic lighting..."></textarea>
     <div class="row">
       <div>
-        <label>🎨 Art Style</label>
+        <label>Art Style</label>
         <select id="style">
           <option value="">No style</option>
           <option value="cinematic film still, dramatic lighting">Cinematic</option>
@@ -95,7 +109,7 @@
         </select>
       </div>
       <div>
-        <label>🖼️ Shape</label>
+        <label>Shape</label>
         <select id="resolution">
           <option value="512x512">Square</option>
           <option value="512x768">Portrait</option>
@@ -104,7 +118,7 @@
         </select>
       </div>
       <div>
-        <label>🔢 How many?</label>
+        <label>How many?</label>
         <select id="count">
           <option>1</option><option selected>2</option><option>4</option><option>6</option><option>8</option>
         </select>
@@ -112,11 +126,11 @@
     </div>
     <div class="row">
       <div>
-        <label>🚫 Negative prompt (optional)</label>
+        <label>Negative prompt</label>
         <input id="negative" placeholder="blurry, deformed, text, watermark...">
       </div>
       <div>
-        <label>🎯 Creativity (guidance)</label>
+        <label>Creativity</label>
         <select id="guidance">
           <option value="5">Loose (5)</option>
           <option value="7" selected>Balanced (7)</option>
@@ -125,19 +139,54 @@
         </select>
       </div>
       <div>
-        <label>🌱 Seed (optional)</label>
+        <label>Seed</label>
         <input id="seed" type="number" placeholder="random">
       </div>
     </div>
-    <button class="generate" id="go" onclick="startGenerate()">✨ generate</button>
+    <button class="generate" id="go" onclick="startGenerate()">✦ Generate ✦</button>
     <div id="status"></div>
   </div>
   <div class="gallery" id="gallery">
-    <div class="empty" id="empty">Your generated images appear here.</div>
+    <div class="empty" id="empty">⟨ awaiting input ⟩ — generated images appear here</div>
   </div>
 </main>
-<footer>Made by Tioluwalope · image engine: <a href="https://perchance.org/ai-text-to-image-generator" target="_blank">Perchance</a></footer>
+<footer>MADE BY TIOLUWALOPE · IMAGE ENGINE: <a href="https://perchance.org/ai-text-to-image-generator" target="_blank">PERCHANCE</a></footer>
 <script>
+  // ---- Neural network background (pure canvas, decorative) ----
+  (function () {
+    const c = document.getElementById('neural'), x = c.getContext('2d');
+    let W, H, pts = [];
+    function resize() {
+      W = c.width = innerWidth; H = c.height = innerHeight;
+      const n = Math.min(90, Math.floor(W * H / 16000));
+      pts = Array.from({ length: n }, () => ({
+        x: Math.random() * W, y: Math.random() * H,
+        vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35
+      }));
+    }
+    addEventListener('resize', resize); resize();
+    (function draw() {
+      x.clearRect(0, 0, W, H);
+      for (const p of pts) {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > W) p.vx *= -1;
+        if (p.y < 0 || p.y > H) p.vy *= -1;
+      }
+      for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) {
+        const a = pts[i], b = pts[j], d = Math.hypot(a.x - b.x, a.y - b.y);
+        if (d < 130) {
+          x.strokeStyle = 'rgba(0,240,255,' + (0.16 * (1 - d / 130)) + ')';
+          x.beginPath(); x.moveTo(a.x, a.y); x.lineTo(b.x, b.y); x.stroke();
+        }
+      }
+      for (const p of pts) {
+        x.fillStyle = 'rgba(0,240,255,.8)';
+        x.beginPath(); x.arc(p.x, p.y, 1.4, 0, 7); x.fill();
+      }
+      requestAnimationFrame(draw);
+    })();
+  })();
+
   // ---- Official Perchance image API (iframe + postMessage, no keys) ----
   const $ = id => document.getElementById(id);
   const statusEl = $('status');
@@ -155,13 +204,13 @@
       f.src = 'https://perchance.org/ai-text-to-image-generator';
       const done = () => { try { f.remove(); } catch (e) {} warmedUp = true; res(true); };
       f.onload = done;
-      setTimeout(done, 12000); // don't block forever
+      setTimeout(done, 12000);
       document.body.appendChild(f);
     });
   }
 
-  // 2) Generate one image: opens a hidden API iframe and listens for the
-  //    postMessage reply tagged with our unique request id.
+  // 2) Generate one image: hidden API iframe + postMessage reply tagged
+  //    with a unique request id.
   function generateOne(prompt, opts) {
     return new Promise((resolve, reject) => {
       const params = new URLSearchParams({ prompt, format: 'json', id: Math.random().toString(36).slice(2) });
@@ -192,10 +241,10 @@
   async function startGenerate() {
     const btn = $('go');
     const prompt = $('prompt').value.trim();
-    if (!prompt) { setStatus('Add a description first ✏️', true); return; }
+    if (!prompt) { setStatus('input required: add a description', true); return; }
     btn.disabled = true;
     try {
-      if (!warmedUp) { setStatus('Warming up the engine...'); await warmUp(); }
+      if (!warmedUp) { setStatus('warming up neural link...'); await warmUp(); }
       const style = $('style').value;
       const fullPrompt = style ? `${prompt}, ${style}` : prompt;
       const opts = {
@@ -206,22 +255,21 @@
       };
       const n = parseInt($('count').value, 10);
       const results = new Array(n).fill(null);
-      const jobs = results.map((_, i) => generateOne(fullPrompt, opts)
-        .then(r => { results[i] = r; fillCard(i, r); })
-        .catch(e => { console.error(e); }));
       for (let i = 0; i < n; i++) addPlaceholder(i);
       let doneCount = 0;
       const tick = setInterval(() => {
         doneCount = results.filter(Boolean).length;
-        if (doneCount >= n) { clearInterval(tick); setStatus('Done ✨'); btn.disabled = false; }
-        else setStatus(`Painting ${doneCount + 1 > n ? n : doneCount + 1} of ${n}... (usually 10-40 seconds each)`);
+        if (doneCount >= n) { clearInterval(tick); setStatus('generation complete'); btn.disabled = false; }
+        else setStatus(`synthesizing ${Math.min(doneCount + 1, n)} of ${n}... (10-40s each)`);
       }, 800);
+      const jobs = results.map((_, i) => generateOne(fullPrompt, opts)
+        .then(r => { results[i] = r; fillCard(i, r); })
+        .catch(e => { console.error(e); }));
       await Promise.all(jobs);
       clearInterval(tick);
-      setStatus('Done ✨');
-      results.forEach((r, i) => r && fillCard(i, r));
+      setStatus('generation complete');
     } catch (e) {
-      setStatus('Something went wrong: ' + e.message, true);
+      setStatus('error: ' + e.message, true);
     } finally {
       btn.disabled = false;
     }
@@ -232,7 +280,7 @@
     const card = document.createElement('div');
     card.className = 'card';
     card.id = 'card-' + i;
-    card.innerHTML = '<div class="placeholder">🎨 painting...</div>';
+    card.innerHTML = '<div class="placeholder">SYNTHESIZING...</div>';
     $('gallery').prepend(card);
   }
 
