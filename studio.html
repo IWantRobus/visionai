@@ -264,7 +264,7 @@
     if (!prompt) { setStatus('input required: add a description', true); return; }
     btn.disabled = true;
     try {
-      if (!warmedUp) { setStatus('warming up neural link...'); await warmUp(); }
+      if (!warmedUp && $('engine').value === 'perchance') { setStatus('warming up neural link...'); await warmUp(); }
       const style = $('style').value;
       const fullPrompt = style ? `${prompt}, ${style}` : prompt;
       const opts = {
