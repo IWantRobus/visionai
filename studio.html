@@ -120,7 +120,7 @@
       <div>
         <label>How many?</label>
         <select id="count">
-          <option>1</option><option selected>2</option><option>4</option><option>6</option><option>8</option>
+          <option selected>1</option><option>2</option><option>4</option><option>6</option><option>8</option>
         </select>
       </div>
     </div>
@@ -227,7 +227,7 @@
       let p = prompt;
       if (opts.negativePrompt) p += `, avoid ${opts.negativePrompt}`;
       const base = 'https://image.pollinations.ai/prompt/' + encodeURIComponent(p) +
-                  `?width=${w}&height=${h}&nologo=true&model=flux&seed=`;
+                  `?width=${w}&height=${h}&nologo=true&model=flux&referrer=iwantrobus.github.io&seed=`;
       return new Promise((resolve, reject) => {
         let tries = 0;
         const attempt = () => {
@@ -236,8 +236,8 @@
           im.onload = () => resolve({ ok: true, url, turbo: true });
           im.onerror = () => {
             tries++;
-            if (tries >= 4) reject(new Error('engine busy'));
-            else setTimeout(attempt, 2500 * tries);
+            if (tries >= 6) reject(new Error('engine busy — try again in a minute'));
+            else setTimeout(attempt, 4000 * tries);
           };
           im.src = url;
         };
@@ -306,7 +306,13 @@
           const c = $('card-' + i);
           if (c) c.innerHTML = '<div class="placeholder">ENGINE BUSY — tap generate again</div>';
         });
-      if (turbo) { for (let i = 0; i < n; i++) { setStatus(`synthesizing ${i + 1} of ${n}...`); await runOne(i); } }
+      if (turbo) {
+        for (let i = 0; i < n; i++) {
+          setStatus(`synthesizing ${i + 1} of ${n}... (each takes ~5-15s)`);
+          await runOne(i);
+          if (i < n - 1) await sleep(3000);
+        }
+      }
       else { await Promise.all(results.map((_, i) => runOne(i))); }
       clearInterval(tick);
       setStatus('generation complete');
