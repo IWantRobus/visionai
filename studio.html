@@ -236,8 +236,12 @@
           im.onload = () => resolve({ ok: true, url, turbo: true });
           im.onerror = () => {
             tries++;
-            if (tries >= 6) reject(new Error('engine busy — try again in a minute'));
-            else setTimeout(attempt, 4000 * tries);
+            const waits = [8000, 16000, 32000, 32000, 32000, 32000];
+            if (tries >= waits.length) reject(new Error('engine busy — try again in a minute'));
+            else {
+              setStatus(`free tier: waiting out the rate limit (~${Math.round(waits[tries-1]/1000)}s)...`);
+              setTimeout(attempt, waits[tries - 1]);
+            }
           };
           im.src = url;
         };
@@ -308,9 +312,9 @@
         });
       if (turbo) {
         for (let i = 0; i < n; i++) {
-          setStatus(`synthesizing ${i + 1} of ${n}... (each takes ~5-15s)`);
+          setStatus(`synthesizing ${i + 1} of ${n}... (free tier: ~1 image per 30s)`);
           await runOne(i);
-          if (i < n - 1) await sleep(3000);
+          if (i < n - 1) await sleep(32000);
         }
       }
       else { await Promise.all(results.map((_, i) => runOne(i))); }
