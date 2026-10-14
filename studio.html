@@ -200,30 +200,32 @@
   function warmUp() {
     return new Promise(res => {
       const f = document.createElement('iframe');
-      f.style.display = 'none';
-      f.src = 'https://perchance.org/ai-text-to-image-generator';
-      const done = () => { try { f.remove(); } catch (e) {} warmedUp = true; res(true); };
-      f.onload = done;
-      setTimeout(done, 12000);
+      f.style.cssText = 'width:1px;height:1px;border:0;position:absolute;opacity:0';
+      f.src = 'https://perchance.org';
+      const t = setTimeout(() => { f.remove(); res(false); }, 15000);
+      f.onload = () => { clearTimeout(t); setTimeout(() => { f.remove(); warmedUp = true; res(true); }, 500); };
       document.body.appendChild(f);
     });
   }
 
   // 2) Generate one image: hidden API iframe + postMessage reply tagged
   //    with a unique request id.
+  const _cache = {};
   function generateOne(prompt, opts) {
+    const ck = prompt + JSON.stringify(opts || {});
+    if (_cache[ck]) return Promise.resolve({ ok: true, url: _cache[ck], cached: true });
     return new Promise((resolve, reject) => {
       const params = new URLSearchParams({ prompt, format: 'json', id: Math.random().toString(36).slice(2) });
       Object.keys(opts).forEach(k => { if (opts[k] !== '' && opts[k] != null) params.set(k, opts[k]); });
       const myId = params.get('id');
       const f = document.createElement('iframe');
-      f.style.display = 'none';
+      f.style.cssText = 'width:1px;height:1px;border:0;position:absolute;opacity:0';
       let settled = false;
       const onMsg = e => {
         const d = e.data || {};
         if (d.api !== 'perchance-image-api' || !d.result || d.result.id !== myId) return;
         cleanup();
-        if (d.result.ok) resolve(d.result);
+        if (d.result.ok) { _cache[ck] = d.result.url; resolve(d.result); }
         else reject(new Error(d.result.error || 'generation failed'));
       };
       const cleanup = () => {
@@ -232,7 +234,7 @@
         try { f.remove(); } catch (e) {}
       };
       window.addEventListener('message', onMsg);
-      setTimeout(() => { cleanup(); reject(new Error('timed out (retry in a minute)')); }, 300000);
+      setTimeout(() => { cleanup(); reject(new Error('timeout after 180s — tap generate again')); }, 180000);
       f.src = 'https://perchance.org/perchance-ai-api?' + params;
       document.body.appendChild(f);
     });
