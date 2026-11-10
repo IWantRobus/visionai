@@ -120,6 +120,7 @@ const state = {
   manga: null,      // {id, title, cover, desc, ...}
   chapters: [],     // current chapter list
   chapterIdx: -1,
+  pendingChapter: null,   // chapter id to auto-open once the list loads
   lang: 'en'
 };
 
@@ -336,6 +337,12 @@ async function loadChapters(m){
       const idx = chs.findIndex(c => c.id === el.dataset.ch);
       openChapter(idx);
     }));
+    if (state.pendingChapter) {
+      const want = state.pendingChapter;
+      state.pendingChapter = null;
+      const idx = chs.findIndex(c => c.id === want);
+      if (idx >= 0) openChapter(idx);
+    }
   } catch(e){ box.innerHTML = errBox(e); }
 }
 
@@ -344,6 +351,7 @@ async function openChapter(idx){
   const ch = state.chapters[idx];
   if (!ch) return;
   state.chapterIdx = idx;
+  if (state.manga) history.replaceState(null, '', '#read/' + state.manga.id + '/' + ch.id);
   $('#topbar').classList.add('hidden');
   $('#bottomnav').classList.add('hidden');
   readerEl.classList.remove('hidden');
@@ -408,6 +416,8 @@ document.querySelectorAll('.tab, nav.bottom button').forEach(b =>
 /* ---------- routing ---------- */
 function route(){
   const h = location.hash || '';
+  const r = h.match(/^#read\/([0-9a-f-]{36})\/([0-9a-f-]{36})/i);
+  if (r) { state.pendingChapter = r[2]; openManga(r[1], true); return true; }
   const m = h.match(/^#manga\/([0-9a-f-]{36})/i);
   if (m) { openManga(m[1], true); return true; }
   return false;
