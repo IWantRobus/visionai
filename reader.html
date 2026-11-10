@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>VISIONAI Reader — Manga, no ads</title>
+<meta name="theme-color" content="#05070d">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='80' font-size='80'>📖</text></svg>">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  :root{--bg:#05070d;--panel:#0c111c;--panel2:#111827;--neon:#00f0ff;--purple:#a855f7;--text:#e6f7ff;--muted:#6b8299;--border:rgba(0,240,255,.18)}
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;min-height:100vh;padding-bottom:70px}
+  header{position:sticky;top:0;z-index:20;background:rgba(5,7,13,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:12px 14px}
+  .topbar{display:flex;align-items:center;gap:10px}
+  .logo{font-weight:800;font-size:17px;letter-spacing:1px;color:var(--neon);text-shadow:0 0 14px rgba(0,240,255,.6);white-space:nowrap}
+  .searchwrap{flex:1;position:relative}
+  #q{width:100%;background:var(--panel2);border:1px solid var(--border);border-radius:10px;color:var(--text);padding:11px 12px;font-size:15px;font-family:inherit}
+  #q:focus{outline:none;border-color:var(--neon);box-shadow:0 0 0 3px rgba(0,240,255,.12)}
+  .tabs{display:flex;gap:8px;margin-top:10px;overflow-x:auto;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{padding:7px 14px;border-radius:20px;background:var(--panel2);border:1px solid var(--border);color:var(--muted);font-size:13px;font-weight:600;white-space:nowrap;cursor:pointer}
+  .tab.active{background:linear-gradient(90deg,rgba(0,240,255,.2),rgba(168,85,247,.2));color:var(--neon);border-color:var(--neon)}
+  main{padding:14px}
+  h2.section{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin:6px 0 12px;font-weight:700}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px}
+  .cardc{background:var(--panel);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:transform .15s}
+  .cardc:active{transform:scale(.97)}
+  .cardc img{width:100%;aspect-ratio:2/3;object-fit:cover;display:block;background:var(--panel2)}
+  .cardc .t{padding:8px;font-size:12px;line-height:1.35;font-weight:600;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:44px}
+  .msg{color:var(--muted);text-align:center;padding:30px 10px;font-size:14px;line-height:1.6}
+  /* detail */
+  .detail-head{display:flex;gap:14px;margin-bottom:16px}
+  .detail-head img{width:110px;aspect-ratio:2/3;object-fit:cover;border-radius:10px;flex-shrink:0;border:1px solid var(--border)}
+  .dtitle{font-size:18px;font-weight:800;line-height:1.3;margin-bottom:6px}
+  .dmeta{color:var(--muted);font-size:12px;line-height:1.6}
+  .desc{color:#b9cddd;font-size:14px;line-height:1.65;margin:12px 0;max-height:180px;overflow:hidden;position:relative}
+  .desc.open{max-height:none}
+  .more{color:var(--neon);font-size:12px;font-weight:700;cursor:pointer;background:none;border:none;padding:0;font-family:inherit}
+  .chips{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+  .chip{font-size:11px;padding:4px 9px;border-radius:12px;background:var(--panel2);color:var(--muted);border:1px solid var(--border)}
+  .chips .chip.on{color:var(--neon);border-color:var(--neon)}
+  .chrow{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px;border-bottom:1px solid rgba(0,240,255,.07);cursor:pointer;font-size:14px}
+  .chrow:active{background:var(--panel2)}
+  .chrow .lang{font-size:10px;text-transform:uppercase;color:var(--purple);font-weight:700;letter-spacing:1px}
+  .chrow .num{color:var(--muted);font-size:12px}
+  /* reader */
+  #reader{background:#000;min-height:100vh;padding-bottom:80px}
+  #pages img{width:100%;display:block;background:#0a0a0a}
+  .rbar{position:fixed;bottom:0;left:0;right:0;display:flex;gap:10px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(5,7,13,.96);backdrop-filter:blur(10px);border-top:1px solid var(--border);z-index:30}
+  .rbar button{flex:1;padding:12px;border-radius:10px;border:1px solid var(--border);background:var(--panel2);color:var(--text);font-weight:700;font-size:13px;font-family:inherit}
+  .rbar button:disabled{opacity:.35}
+  .rbar button.nav{flex:0 0 auto;padding:12px 16px;color:var(--neon)}
+  .rtop{position:fixed;top:0;left:0;right:0;padding:10px 14px;background:rgba(5,7,13,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);z-index:30;display:flex;justify-content:space-between;align-items:center;font-size:13px}
+  .rtop button{background:none;border:none;color:var(--neon);font-size:13px;font-weight:700;font-family:inherit;cursor:pointer}
+  .loading{text-align:center;padding:24px;color:var(--neon);font-size:13px;letter-spacing:1px}
+  .spark{display:inline-block;animation:blink 1.2s infinite}
+  @keyframes blink{50%{opacity:.25}}
+  .btn{display:block;width:100%;padding:13px;border-radius:10px;background:linear-gradient(90deg,#00f0ff,#a855f7);color:#04121a;font-weight:800;font-size:14px;border:none;font-family:inherit;margin-top:10px;cursor:pointer}
+  .fav{background:none;border:1px solid var(--border);color:var(--text);padding:9px 14px;border-radius:10px;font-size:13px;font-weight:700;font-family:inherit;cursor:pointer;margin-top:10px}
+  .fav.on{color:#ffd166;border-color:#ffd166}
+  .src{border:1px solid var(--border);border-radius:12px;padding:12px;margin-bottom:10px;background:var(--panel)}
+  .src a{color:var(--neon);text-decoration:none;font-weight:700;font-size:14px}
+  .src p{color:var(--muted);font-size:12px;margin-top:4px;line-height:1.5}
+  nav.bottom{position:fixed;bottom:0;left:0;right:0;display:flex;background:rgba(5,7,13,.96);backdrop-filter:blur(12px);border-top:1px solid var(--border);z-index:25;padding-bottom:env(safe-area-inset-bottom)}
+  nav.bottom button{flex:1;background:none;border:none;color:var(--muted);font-size:11px;font-weight:700;padding:10px 0;font-family:inherit;letter-spacing:.5px;cursor:pointer}
+  nav.bottom button.on{color:var(--neon)}
+  nav.bottom .ico{display:block;font-size:17px;margin-bottom:2px}
+  .hidden{display:none!important}
+</style>
+</head>
+<body>
+
+<header id="topbar">
+  <div class="topbar">
+    <div class="logo">VISIONAI READER</div>
+    <div class="searchwrap"><input id="q" type="search" placeholder="Search manga…" autocomplete="off"></div>
+  </div>
+  <div class="tabs">
+    <div class="tab active" data-view="browse">🔥 Popular</div>
+    <div class="tab" data-view="latest">🆕 Latest</div>
+    <div class="tab" data-view="library">⭐ Library</div>
+    <div class="tab" data-view="sources">🌐 Official apps</div>
+  </div>
+</header>
+
+<main id="app"></main>
+<div id="reader" class="hidden">
+  <div class="rtop">
+    <button id="rback">← Back</button>
+    <span id="rtitle" style="color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:60%"></span>
+    <span id="rprog" style="color:var(--neon);font-size:12px"></span>
+  </div>
+  <div style="height:44px"></div>
+  <div id="pages"></div>
+  <div class="rbar">
+    <button class="nav" id="prevCh">◀</button>
+    <button id="nextCh">Next chapter ▶</button>
+    <button class="nav" id="topBtn">↑</button>
+  </div>
+</div>
+
+<nav class="bottom" id="bottomnav">
+  <button class="on" data-view="browse"><span class="ico">🔥</span>Popular</button>
+  <button data-view="latest"><span class="ico">🆕</span>Latest</button>
+  <button data-view="library"><span class="ico">⭐</span>Library</button>
+  <button data-view="sources"><span class="ico">🌐</span>Official</button>
+</nav>
+
+<script>
+const API = 'https://api.mangadex.org';
+const UPLOADS = 'https://uploads.mangadex.org';
+const $ = s => document.querySelector(s);
+const app = $('#app'), readerEl = $('#reader');
+
+const state = {
+  view: 'browse',
+  manga: null,      // {id, title, cover, desc, ...}
+  chapters: [],     // current chapter list
+  chapterIdx: -1,
+  lang: 'en'
+};
+
+/* ---------- storage ---------- */
+const store = {
+  favs(){ try { return JSON.parse(localStorage.getItem('vr_favs')||'[]'); } catch(e){ return []; } },
+  setFavs(a){ localStorage.setItem('vr_favs', JSON.stringify(a)); },
+  isFav(id){ return store.favs().some(f => f.id === id); },
+  toggleFav(m){
+    let f = store.favs();
+    if (f.some(x => x.id === m.id)) f = f.filter(x => x.id !== m.id);
+    else f.unshift({ id: m.id, title: m.title, cover: m.cover });
+    store.setFavs(f);
+    return f.some(x => x.id === m.id);
+  },
+  progress(){ try { return JSON.parse(localStorage.getItem('vr_progress')||'{}'); } catch(e){ return {}; } },
+  saveProgress(p){ const all = store.progress(); all[p.mangaId] = p; localStorage.setItem('vr_progress', JSON.stringify(all)); },
+  lastRead(){ const all = store.progress(); return Object.values(all).sort((a,b)=>b.at-a.at)[0] || null; }
+};
+
+/* ---------- api helpers ---------- */
+async function api(path, params){
+  const url = API + path + '?' + new URLSearchParams(
+     Object.entries(params).flatMap(([k,v]) => Array.isArray(v) ? v.map(x=>[k,x]) : [[k,v]])
+  ).toString();
+  const r = await fetch(url, { headers: { 'Accept': 'application/json' } });
+  if (!r.ok) throw new Error('HTTP ' + r.status);
+  return r.json();
+}
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+function titleOf(a){
+  const t = a.title || {};
+  return t.en || t['ja-ro'] || t.ja || Object.values(t)[0] || 'Untitled';
+}
+function mangaFromJson(m){
+  const a = m.attributes;
+  const rel = {};
+  (m.relationships||[]).forEach(r => { if (r.attributes) rel[r.type] = r.attributes; });
+  const coverFile = rel.cover_art ? rel.cover_art.fileName : null;
+  return {
+    id: m.id,
+    title: titleOf(a),
+    cover: coverFile ? `${UPLOADS}/covers/${m.id}/${coverFile}.256.jpg` : '',
+    coverBig: coverFile ? `${UPLOADS}/covers/${m.id}/${coverFile}.512.jpg` : '',
+    desc: (a.description && (a.description.en || Object.values(a.description)[0])) || '',
+    status: a.status || '',
+    year: a.year || '',
+    tags: (a.tags||[]).map(t => (t.attributes.name.en || Object.values(t.attributes.name)[0])),
+    origLang: a.originalLanguage || '',
+    contentRating: a.contentRating || ''
+  };
+}
+
+/* ---------- cards ---------- */
+function cardGrid(list){
+  if (!list.length) return '<div class="msg">Nothing found.</div>';
+  return '<div class="grid">' + list.map(m => `
+    <div class="cardc" data-id="${m.id}">
+      <img src="${m.cover}" alt="" loading="lazy" onerror="this.style.opacity=.2">
+      <div class="t">${escapeHtml(m.title)}</div>
+    </div>`).join('') + '</div>';
+}
+function escapeHtml(s){ return (s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+/* ---------- views ---------- */
+async function loadBrowse(){
+  state.view = 'browse'; setTab('browse'); showMain();
+  app.innerHTML = '<div class="loading">loading popular <span class="spark">▮</span></div>';
+  try {
+    const d = await api('/manga', {
+      limit: 24, 'includes[]': 'cover_art',
+      'contentRating[]': ['safe','suggestive'],
+      'order[followedCount]': 'desc'
+    });
+    const list = d.data.map(mangaFromJson);
+    const last = store.lastRead();
+    let html = '';
+    if (last) html += `<h2 class="section">Continue reading</h2>` + cardGrid([last]) ;
+    html += '<h2 class="section">🔥 Popular right now</h2>' + cardGrid(list);
+    app.innerHTML = html;
+    bindCards();
+  } catch(e){ app.innerHTML = errBox(e); }
+}
+
+async function loadLatest(){
+  state.view = 'latest'; setTab('latest'); showMain();
+  app.innerHTML = '<div class="loading">loading latest <span class="spark">▮</span></div>';
+  try {
+    const d = await api('/manga', {
+      limit: 24, 'includes[]': 'cover_art',
+      'contentRating[]': ['safe','suggestive'],
+      'order[latestUploadedChapter]': 'desc'
+    });
+    app.innerHTML = '<h2 class="section">🆕 Recently updated</h2>' + cardGrid(d.data.map(mangaFromJson));
+    bindCards();
+  } catch(e){ app.innerHTML = errBox(e); }
+}
+
+function loadLibrary(){
+  state.view = 'library'; setTab('library'); showMain();
+  const favs = store.favs();
+  const last = store.lastRead();
+  let html = '';
+  if (last) html += '<h2 class="section">Continue reading</h2>' + cardGrid([last]);
+  html += '<h2 class="section">⭐ Your library</h2>';
+  html += favs.length ? cardGrid(favs) : '<div class="msg">No favourites yet.<br>Open a manga and tap ☆ Save to library.</div>';
+  app.innerHTML = html;
+  bindCards();
+}
+
+function loadSources(){
+  state.view = 'sources'; setTab('sources'); showMain();
+  app.innerHTML = `
+    <h2 class="section">Official free options</h2>
+    <div class="msg" style="padding:0 0 14px;text-align:left">
+      The big licensed series (One Piece, Jujutsu Kaisen, Blue Lock) are pulled from free aggregators by their publishers. These apps are free and legal:
+    </div>
+    <div class="src"><a href="https://mangaplus.shueisha.co.jp/" target="_blank" rel="noopener">MANGA Plus by Shueisha →</a>
+      <p>Free, official. One Piece, Jujutsu Kaisen, Chainsaw Man, Blue Lock, My Hero Academia — new chapters free, first/last chapters always free.</p></div>
+    <div class="src"><a href="https://www.webtoons.com/" target="_blank" rel="noopener">WEBTOON →</a>
+      <p>Free, official. Solo Leveling, Tower of God, Lookism, and thousands of manhwa — daily free episodes.</p></div>
+    <div class="src"><a href="https://mangadex.org/" target="_blank" rel="noopener">MangaDex →</a>
+      <p>The open library this app reads from. Community-run, ad-light, honours publisher takedowns.</p></div>`;
+}
+
+function errBox(e){
+  return `<div class="msg">Couldn't load. ${escapeHtml(e.message||'')}<br><br>Check your connection and tap the tab again.</div>`;
+}
+function setTab(v){
+  document.querySelectorAll('.tab, nav.bottom button').forEach(b => b.classList.toggle('active', b.dataset.view === v));
+  document.querySelectorAll('nav.bottom button').forEach(b => b.classList.toggle('on', b.dataset.view === v));
+}
+function showMain(){ readerEl.classList.add('hidden'); $('#topbar').classList.remove('hidden'); $('#bottomnav').classList.remove('hidden'); window.scrollTo(0,0); }
+function bindCards(){
+  app.querySelectorAll('.cardc').forEach(el => el.addEventListener('click', () => openManga(el.dataset.id)));
+}
+
+/* ---------- manga detail ---------- */
+async function openManga(id){
+  showMain();
+  app.innerHTML = '<div class="loading">loading <span class="spark">▮</span></div>';
+  try {
+    const d = await api('/manga/' + id, { 'includes[]': ['cover_art','author','artist'] });
+    const m = mangaFromJson(d.data);
+    const authors = (d.data.relationships||[]).filter(r=>r.type==='author'&&r.attributes).map(r=>r.attributes.name).join(', ');
+    const isFav = store.isFav(m.id);
+    app.innerHTML = `
+      <div class="detail-head">
+        <img src="${m.coverBig||m.cover}" alt="" onerror="this.style.opacity=.2">
+        <div>
+          <div class="dtitle">${escapeHtml(m.title)}</div>
+          <div class="dmeta">${escapeHtml(authors)}${m.year ? ' · ' + m.year : ''}<br>${escapeHtml(m.status)}${m.origLang ? ' · ' + m.origLang.toUpperCase() : ''}</div>
+          <button class="fav ${isFav?'on':''}" id="favBtn">${isFav ? '★ Saved' : '☆ Save to library'}</button>
+        </div>
+      </div>
+      <div class="desc" id="desc">${escapeHtml(m.desc) || '<i style="color:var(--muted)">No description.</i>'}</div>
+      ${m.tags.length ? '<div class="chips">' + m.tags.slice(0,8).map(t=>`<span class="chip">${escapeHtml(t)}</span>`).join('') + '</div>' : ''}
+      <h2 class="section">Chapters</h2>
+      <div class="chips">
+        <span class="chip on" data-lang="en">English</span>
+        <span class="chip" data-lang="all">All languages</span>
+      </div>
+      <div id="chlist"><div class="loading">loading chapters <span class="spark">▮</span></div></div>`;
+    $('#desc').addEventListener('click', () => $('#desc').classList.toggle('open'));
+    $('#favBtn').addEventListener('click', e => {
+      const now = store.toggleFav(m);
+      e.target.classList.toggle('on', now);
+      e.target.textContent = now ? '★ Saved' : '☆ Save to library';
+    });
+    document.querySelectorAll('[data-lang]').forEach(c => c.addEventListener('click', async () => {
+      document.querySelectorAll('[data-lang]').forEach(x => x.classList.remove('on'));
+      c.classList.add('on');
+      state.lang = c.dataset.lang;
+      await loadChapters(m);
+    }));
+    state.manga = m;
+    await loadChapters(m);
+  } catch(e){ app.innerHTML = errBox(e); }
+}
+
+async function loadChapters(m){
+  const box = $('#chlist');
+  box.innerHTML = '<div class="loading">loading chapters <span class="spark">▮</span></div>';
+  try {
+    const params = { limit: 500, 'order[volume]': 'asc', 'order[chapter]': 'asc' };
+    if (state.lang === 'en') { params['translatedLanguage[]'] = 'en'; }
+    const d = await api('/manga/' + m.id + '/feed', params);
+    const chs = d.data
+      .filter(c => !c.attributes.externalUrl)
+      .map(c => ({ id: c.id, num: c.attributes.chapter, title: c.attributes.title || '', lang: c.attributes.translatedLanguage, pages: c.attributes.pages }));
+    state.chapters = chs;
+    if (!chs.length) {
+      box.innerHTML = state.lang === 'en'
+        ? '<div class="msg">No English chapters for this one.<br>Tap ✕ <b>All languages</b> above to see what exists.</div>'
+        : '<div class="msg">No readable chapters.</div>';
+      return;
+    }
+    // newest at top feels better for ongoing series
+    const ordered = [...chs].reverse();
+    box.innerHTML = ordered.map((c, i) => `
+      <div class="chrow" data-ch="${c.id}">
+        <div>
+          <div>${c.num ? 'Chapter ' + escapeHtml(c.num) : 'Oneshot'}${c.title ? ' — ' + escapeHtml(c.title.slice(0,42)) : ''}</div>
+          <div class="num">${c.pages || '?'} pages</div>
+        </div>
+        <span class="lang">${escapeHtml(c.lang)}</span>
+      </div>`).join('');
+    box.querySelectorAll('.chrow').forEach(el => el.addEventListener('click', () => {
+      const idx = chs.findIndex(c => c.id === el.dataset.ch);
+      openChapter(idx);
+    }));
+  } catch(e){ box.innerHTML = errBox(e); }
+}
+
+/* ---------- reader ---------- */
+async function openChapter(idx){
+  const ch = state.chapters[idx];
+  if (!ch) return;
+  state.chapterIdx = idx;
+  $('#topbar').classList.add('hidden');
+  $('#bottomnav').classList.add('hidden');
+  readerEl.classList.remove('hidden');
+  window.scrollTo(0,0);
+  $('#pages').innerHTML = '<div class="loading">loading pages <span class="spark">▮</span></div>';
+  $('#rtitle').textContent = (ch.num ? 'Ch. ' + ch.num : 'Oneshot');
+  $('#rprog').textContent = `${idx + 1}/${state.chapters.length}`;
+  $('#prevCh').disabled = idx <= 0;
+  $('#nextCh').disabled = idx >= state.chapters.length - 1;
+  try {
+    const d = await fetch(`${API}/at-home/server/${ch.id}`).then(r => r.json());
+    const base = d.baseUrl, hash = d.chapter.hash;
+    const files = (d.chapter.dataSaver && d.chapter.dataSaver.length) ? d.chapter.dataSaver : d.chapter.data;
+    const sub = (d.chapter.dataSaver && d.chapter.dataSaver.length) ? 'data-saver' : 'data';
+    $('#pages').innerHTML = files.map((f, i) =>
+      `<img src="${base}/${sub}/${hash}/${f}" loading="lazy" alt="page ${i+1}" onerror="this.style.minHeight='90vh';this.alt='page failed to load'">`
+    ).join('');
+    store.saveProgress({ mangaId: state.manga.id, chapterId: ch.id, chapterNum: ch.num, title: state.manga.title, cover: state.manga.cover, idx, at: Date.now() });
+  } catch(e){
+    $('#pages').innerHTML = `<div class="msg">Couldn't load pages. ${escapeHtml(e.message||'')}</div>`;
+  }
+}
+
+$('#rback').addEventListener('click', () => { openManga(state.manga.id); });
+$('#prevCh').addEventListener('click', () => openChapter(state.chapterIdx - 1));
+$('#nextCh').addEventListener('click', () => { if (state.chapterIdx < state.chapters.length - 1) openChapter(state.chapterIdx + 1); });
+$('#topBtn').addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
+
+/* ---------- search + nav ---------- */
+let searchTimer = null;
+$('#q').addEventListener('input', e => {
+  const term = e.target.value.trim();
+  clearTimeout(searchTimer);
+  if (!term) { loadBrowse(); return; }
+  if (term.length < 2) return;
+  searchTimer = setTimeout(() => doSearch(term), 450);
+});
+async function doSearch(term){
+  setTab('browse'); showMain();
+  app.innerHTML = '<div class="loading">searching <span class="spark">▮</span></div>';
+  try {
+    await sleep(150);
+    const d = await api('/manga', {
+      title: term, limit: 24, 'includes[]': 'cover_art',
+      'contentRating[]': ['safe','suggestive','erotica'],
+      'order[relevance]': 'desc'
+    });
+    app.innerHTML = `<h2 class="section">Results for “${escapeHtml(term)}”</h2>` + cardGrid(d.data.map(mangaFromJson));
+    bindCards();
+  } catch(e){ app.innerHTML = errBox(e); }
+}
+document.querySelectorAll('.tab, nav.bottom button').forEach(b =>
+  b.addEventListener('click', () => {
+    const v = b.dataset.view;
+    if (v === 'browse') loadBrowse();
+    else if (v === 'latest') loadLatest();
+    else if (v === 'library') loadLibrary();
+    else if (v === 'sources') loadSources();
+  })
+);
+
+/* ---------- boot ---------- */
+loadBrowse();
+</script>
+</body>
+</html>
