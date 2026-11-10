@@ -107,7 +107,10 @@
 </nav>
 
 <script>
-const API = 'https://api.mangadex.org';
+// MangaDex blocks cross-origin browser fetches, so JSON calls go through our
+// own proxy function (see functions/mdProxy.ts). Images load straight from the CDN.
+const PROXY = 'https://superagent-2372f627.base44.app/functions/mdProxy';
+const API = PROXY;
 const UPLOADS = 'https://uploads.mangadex.org';
 const $ = s => document.querySelector(s);
 const app = $('#app'), readerEl = $('#reader');
@@ -139,10 +142,13 @@ const store = {
 
 /* ---------- api helpers ---------- */
 async function api(path, params){
-  const url = API + path + '?' + new URLSearchParams(
-     Object.entries(params).flatMap(([k,v]) => Array.isArray(v) ? v.map(x=>[k,x]) : [[k,v]])
-  ).toString();
-  const r = await fetch(url, { headers: { 'Accept': 'application/json' } });
+  const q = new URLSearchParams();
+  q.append('path', path);
+  Object.entries(params || {}).forEach(([k,v]) => {
+    if (Array.isArray(v)) v.forEach(x => q.append(k, x));
+    else q.append(k, v);
+  });
+  const r = await fetch(API + '?' + q.toString(), { headers: { 'Accept': 'application/json' } });
   if (!r.ok) throw new Error('HTTP ' + r.status);
   return r.json();
 }
@@ -347,7 +353,7 @@ async function openChapter(idx){
   $('#prevCh').disabled = idx <= 0;
   $('#nextCh').disabled = idx >= state.chapters.length - 1;
   try {
-    const d = await fetch(`${API}/at-home/server/${ch.id}`).then(r => r.json());
+    const d = await api('/at-home/server/' + ch.id, {});
     const base = d.baseUrl, hash = d.chapter.hash;
     const files = (d.chapter.dataSaver && d.chapter.dataSaver.length) ? d.chapter.dataSaver : d.chapter.data;
     const sub = (d.chapter.dataSaver && d.chapter.dataSaver.length) ? 'data-saver' : 'data';
