@@ -257,7 +257,7 @@ function setTab(v){
   document.querySelectorAll('.tab, nav.bottom button').forEach(b => b.classList.toggle('active', b.dataset.view === v));
   document.querySelectorAll('nav.bottom button').forEach(b => b.classList.toggle('on', b.dataset.view === v));
 }
-function showMain(){ readerEl.classList.add('hidden'); $('#topbar').classList.remove('hidden'); $('#bottomnav').classList.remove('hidden'); window.scrollTo(0,0); }
+function showMain(){ readerEl.classList.add('hidden'); app.classList.remove('hidden'); $('#topbar').classList.remove('hidden'); $('#bottomnav').classList.remove('hidden'); window.scrollTo(0,0); }
 function bindCards(){
   app.querySelectorAll('.cardc').forEach(el => el.addEventListener('click', () => openManga(el.dataset.id)));
 }
@@ -354,6 +354,7 @@ async function openChapter(idx){
   if (state.manga) history.replaceState(null, '', '#read/' + state.manga.id + '/' + ch.id);
   $('#topbar').classList.add('hidden');
   $('#bottomnav').classList.add('hidden');
+  app.classList.add('hidden');
   readerEl.classList.remove('hidden');
   window.scrollTo(0,0);
   $('#pages').innerHTML = '<div class="loading">loading pages <span class="spark">▮</span></div>';
