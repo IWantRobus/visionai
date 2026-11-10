@@ -262,7 +262,8 @@ function bindCards(){
 }
 
 /* ---------- manga detail ---------- */
-async function openManga(id){
+async function openManga(id, fromHash){
+  if (!fromHash) history.pushState(null, '', '#manga/' + id);
   showMain();
   app.innerHTML = '<div class="loading">loading <span class="spark">▮</span></div>';
   try {
@@ -404,8 +405,18 @@ document.querySelectorAll('.tab, nav.bottom button').forEach(b =>
   })
 );
 
+/* ---------- routing ---------- */
+function route(){
+  const h = location.hash || '';
+  const m = h.match(/^#manga\/([0-9a-f-]{36})/i);
+  if (m) { openManga(m[1], true); return true; }
+  return false;
+}
+window.addEventListener('hashchange', () => { if (!route()) loadBrowse(); });
+window.addEventListener('popstate', () => { if (!route()) loadBrowse(); });
+
 /* ---------- boot ---------- */
-loadBrowse();
+if (!route()) loadBrowse();
 </script>
 </body>
 </html>
