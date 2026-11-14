@@ -1,0 +1,9 @@
+{
+  "name": "VISIONAI Reader",
+  "short_name": "Reader",
+  "start_url": "./reader.html",
+  "display": "standalone",
+  "background_color": "#05080a",
+  "theme_color": "#00f2ff",
+  "description": "Ad-free manga reader"
+}

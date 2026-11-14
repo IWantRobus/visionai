@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>VISIONAI Reader — Manga, no ads</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#00f2ff">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#05070d">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='80' font-size='80'>📖</text></svg>">
 <style>
@@ -142,16 +145,69 @@ const store = {
 };
 
 /* ---------- api helpers ---------- */
-async function api(path, params){
+const _mem = new Map();
+function _lsGet(key){
+  try {
+    const raw = localStorage.getItem('vr:' + key);
+    if (!raw) return null;
+    const { t, v } = JSON.parse(raw);
+    if (Date.now() - t > 1000 * 60 * 10) return null;
+    return v;
+  } catch { return null; }
+}
+function _lsSet(key, v){
+  try {
+    localStorage.setItem('vr:' + key, JSON.stringify({ t: Date.now(), v }));
+  } catch {
+    // storage full: drop our cache instead of failing the request
+    try { Object.keys(localStorage).filter(k => k.startsWith('vr:')).forEach(k => localStorage.removeItem(k)); } catch {}
+  }
+}
+
+function apiUrl(path, params){
   const q = new URLSearchParams();
   q.append('path', path);
   Object.entries(params || {}).forEach(([k,v]) => {
     if (Array.isArray(v)) v.forEach(x => q.append(k, x));
     else q.append(k, v);
   });
-  const r = await fetch(API + '?' + q.toString(), { headers: { 'Accept': 'application/json' } });
+  return API + '?' + q.toString();
+}
+
+async function api(path, params, opts){
+  const url = apiUrl(path, params);
+  const fresh = opts && opts.fresh;
+  // at-home URLs expire on MangaDex's side, so give them a shorter life
+  const ttl = path.startsWith('/at-home') ? 4 * 60 * 1000 : 10 * 60 * 1000;
+
+  if (!fresh) {
+    if (_mem.has(url)) {
+      const hit = _mem.get(url);
+      if (Date.now() - hit.t < ttl) return hit.v;
+    }
+    const disk = _lsGet(url);
+    if (disk) { _mem.set(url, { t: Date.now(), v: disk }); return disk; }
+  }
+
+  const r = await fetch(url, { headers: { 'Accept': 'application/json' } });
   if (!r.ok) throw new Error('HTTP ' + r.status);
-  return r.json();
+  const data = await r.json();
+  _mem.set(url, { t: Date.now(), v: data });
+  if (!path.startsWith('/at-home')) _lsSet(url, data);
+  return data;
+}
+
+// warm the next chapter so tapping "next" is instant
+const _prefetched = new Set();
+async function prefetchChapter(ch){
+  if (!ch || _prefetched.has(ch.id)) return;
+  _prefetched.add(ch.id);
+  try {
+    const d = await api('/at-home/server/' + ch.id, {});
+    const files = (d.chapter.dataSaver && d.chapter.dataSaver.length) ? d.chapter.dataSaver : d.chapter.data;
+    const sub = (d.chapter.dataSaver && d.chapter.dataSaver.length) ? 'data-saver' : 'data';
+    files.slice(0, 3).forEach(f => { const i = new Image(); i.src = `${d.baseUrl}/${sub}/${d.chapter.hash}/${f}`; });
+  } catch {}
 }
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
@@ -368,9 +424,10 @@ async function openChapter(idx){
     const files = (d.chapter.dataSaver && d.chapter.dataSaver.length) ? d.chapter.dataSaver : d.chapter.data;
     const sub = (d.chapter.dataSaver && d.chapter.dataSaver.length) ? 'data-saver' : 'data';
     $('#pages').innerHTML = files.map((f, i) =>
-      `<img src="${base}/${sub}/${hash}/${f}" loading="lazy" alt="page ${i+1}" onerror="this.style.minHeight='90vh';this.alt='page failed to load'">`
+      `<img src="${base}/${sub}/${hash}/${f}" loading="lazy" decoding="async" alt="page ${i+1}" onerror="this.style.minHeight='90vh';this.alt='page failed to load'">`
     ).join('');
     store.saveProgress({ mangaId: state.manga.id, chapterId: ch.id, chapterNum: ch.num, title: state.manga.title, cover: state.manga.cover, idx, at: Date.now() });
+    prefetchChapter(state.chapters[idx + 1]);
   } catch(e){
     $('#pages').innerHTML = `<div class="msg">Couldn't load pages. ${escapeHtml(e.message||'')}</div>`;
   }
@@ -423,11 +480,26 @@ function route(){
   if (m) { openManga(m[1], true); return true; }
   return false;
 }
-window.addEventListener('hashchange', () => { if (!route()) loadBrowse(); });
-window.addEventListener('popstate', () => { if (!route()) loadBrowse(); });
+window.addEventListener('hashchange', () => { if (!route()) loadBrowse();
+
+// install as an app on the phone + cache the shell for instant repeat loads
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
+} });
+window.addEventListener('popstate', () => { if (!route()) loadBrowse();
+
+// install as an app on the phone + cache the shell for instant repeat loads
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
+} });
 
 /* ---------- boot ---------- */
 if (!route()) loadBrowse();
+
+// install as an app on the phone + cache the shell for instant repeat loads
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
+}
 </script>
 </body>
 </html>
